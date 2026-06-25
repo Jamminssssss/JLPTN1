@@ -282,10 +282,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = N1TestApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "N1 Test TEST";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "이 앱은 발음 연습을 위해 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "이 앱은 발음 정확도를 측정하기 위해 음성 인식에 접근합니다.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Used to provide a better advertising experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -293,7 +294,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.N1TestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -313,6 +314,11 @@
 		86B673942EF95D5900F0F18F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AD_APP_ID = "ca-app-pub-9940677842340433~7190980919";
+				AD_APP_OPEN_ID = "ca-app-pub-9940677842340433/9589650215";
+				AD_BANNER_BOTTOM_ID = "ca-app-pub-9940677842340433/3704830349";
+				AD_BANNER_TOP_ID = "ca-app-pub-9940677842340433/5017912014";
+				AD_INTERSTITIAL_ID = "ca-app-pub-9940677842340433/1902731883";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -322,10 +328,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = N1TestApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "N1 Test TEST";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "이 앱은 발음 연습을 위해 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "이 앱은 발음 정확도를 측정하기 위해 음성 인식에 접근합니다.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Used to provide a better advertising experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -333,7 +340,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.N1TestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
