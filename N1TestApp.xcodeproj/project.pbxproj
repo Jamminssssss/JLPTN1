@@ -17,6 +17,59 @@
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		86B675692EF9659800F0F18F /* Exceptions for "N1TestApp" folder in "N1TestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			assetTagsByRelativePath = {
+				Audio/n1q1.m4a = (Audio_N1_Set2, );
+				Audio/n1q10.m4a = (Audio_N1_Set2, );
+				Audio/n1q11.m4a = (Audio_N1_Set2, );
+				Audio/n1q12.m4a = (Audio_N1_Set2, );
+				Audio/n1q13.m4a = (Audio_N1_Set2, );
+				Audio/n1q14.m4a = (Audio_N1_Set2, );
+				Audio/n1q15.m4a = (Audio_N1_Set2, );
+				Audio/n1q16.m4a = (Audio_N1_Set2, );
+				Audio/n1q17.m4a = (Audio_N1_Set2, );
+				Audio/n1q18.m4a = (Audio_N1_Set2, );
+				Audio/n1q19.m4a = (Audio_N1_Set2, );
+				Audio/n1q2.m4a = (Audio_N1_Set2, );
+				Audio/n1q20.m4a = (Audio_N1_Set2, );
+				Audio/n1q21.m4a = (Audio_N1_Set2, );
+				Audio/n1q22.m4a = (Audio_N1_Set2, );
+				Audio/n1q23.m4a = (Audio_N1_Set2, );
+				Audio/n1q24.m4a = (Audio_N1_Set2, );
+				Audio/n1q25.m4a = (Audio_N1_Set2, );
+				Audio/n1q26.m4a = (Audio_N1_Set2, );
+				Audio/n1q27.m4a = (Audio_N1_Set2, );
+				Audio/n1q28.m4a = (Audio_N1_Set2, );
+				Audio/n1q29.m4a = (Audio_N1_Set2, );
+				Audio/n1q3.m4a = (Audio_N1_Set2, );
+				Audio/n1q30.m4a = (Audio_N1_Set2, );
+				Audio/n1q31.m4a = (Audio_N1_Set2, );
+				Audio/n1q32.m4a = (Audio_N1_Set2, );
+				Audio/n1q33.m4a = (Audio_N1_Set2, );
+				Audio/n1q34.m4a = (Audio_N1_Set2, );
+				Audio/n1q35.m4a = (Audio_N1_Set2, );
+				Audio/n1q36.m4a = (Audio_N1_Set2, );
+				Audio/n1q4.m4a = (Audio_N1_Set2, );
+				Audio/n1q41.m4a = (Audio_N1_Set3, );
+				Audio/n1q42.m4a = (Audio_N1_Set3, );
+				Audio/n1q43.m4a = (Audio_N1_Set3, );
+				Audio/n1q44.m4a = (Audio_N1_Set3, );
+				Audio/n1q45.m4a = (Audio_N1_Set3, );
+				Audio/n1q46.m4a = (Audio_N1_Set4, );
+				Audio/n1q47.m4a = (Audio_N1_Set4, );
+				Audio/n1q48.m4a = (Audio_N1_Set4, );
+				Audio/n1q49.m4a = (Audio_N1_Set4, );
+				Audio/n1q5.m4a = (Audio_N1_Set2, );
+				Audio/n1q50.m4a = (Audio_N1_Set4, );
+				Audio/n1q51.m4a = (Audio_N1_Set5, );
+				Audio/n1q52.m4a = (Audio_N1_Set5, );
+				Audio/n1q53.m4a = (Audio_N1_Set5, );
+				Audio/n1q54.m4a = (Audio_N1_Set5, );
+				Audio/n1q55.m4a = (Audio_N1_Set5, );
+				Audio/n1q6.m4a = (Audio_N1_Set2, );
+				Audio/n1q7.m4a = (Audio_N1_Set2, );
+				Audio/n1q8.m4a = (Audio_N1_Set2, );
+				Audio/n1q9.m4a = (Audio_N1_Set2, );
+			};
 			membershipExceptions = (
 				Info.plist,
 			);
@@ -96,6 +149,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					Audio_N1_Set2,
+					Audio_N1_Set3,
+					Audio_N1_Set4,
+					Audio_N1_Set5,
+				);
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
@@ -275,6 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = N1TestApp/N1TestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = DUBPMF36TD;
@@ -294,7 +354,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.9;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.N1TestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -321,6 +381,7 @@
 				AD_INTERSTITIAL_ID = "ca-app-pub-9940677842340433/1902731883";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = N1TestApp/N1TestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = DUBPMF36TD;
@@ -340,7 +401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.9;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.N1TestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

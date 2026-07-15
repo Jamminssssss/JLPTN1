@@ -23,7 +23,7 @@ final class VocabDataLoader {
     lazy var words: [Word] = parseWords()
     lazy var grammarExamples: [GrammarExample] = parseGrammar()
 
-    // MARK: N5_vocab.csv (kanji, reading, meaning_ko/en/ja/zh)
+    // MARK: N1_vocab.csv (kanji, reading, meaning_ko/en/ja/zh)
 
     private func parseWords() -> [Word] {
         guard let url = Bundle.main.url(forResource: "N1_vocab", withExtension: "csv"),
@@ -55,7 +55,7 @@ final class VocabDataLoader {
         return result
     }
 
-    // MARK: N5_grammar.csv (grammar, example, meaning_ko/en/ja/zh, translation_ko/en/ja/zh)
+    // MARK: N1_grammar.csv (grammar, example, meaning_ko/en/ja/zh, translation_ko/en/ja/zh)
 
     private func parseGrammar() -> [GrammarExample] {
         guard let url = Bundle.main.url(forResource: "N1_grammar", withExtension: "csv"),

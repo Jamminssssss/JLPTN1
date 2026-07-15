@@ -1,30 +1,30 @@
-// ReadingView.swift — EXAM PAPER REDESIGN (Orange Theme)
+// ReadingView.swift — EXAM PAPER REDESIGN
 // Preserves 100% of JLPT logic, state, and functionality
-// UI structurally matches Exam style, Orange tokens
+// UI structurally matches TopikReadingView (Exam style, Blue tokens)
 
 import SwiftUI
 import AVFoundation
 import StoreKit
 import UIKit
 
-// MARK: - Exam Colour Tokens (주황색 테마 적용)
+// MARK: - Exam Colour Tokens (TOPIK 스타일 파랑 계열 적용)
 
 private extension Color {
     static func examPaper(_ s: ColorScheme) -> Color {
-        s == .dark ? Color(red: 0.10, green: 0.09, blue: 0.08)
-                   : Color(red: 0.98, green: 0.96, blue: 0.95)
+        s == .dark ? Color(red: 0.09, green: 0.09, blue: 0.10)
+                   : Color(red: 0.95, green: 0.94, blue: 0.97)
     }
     static func examCard(_ s: ColorScheme) -> Color {
-        s == .dark ? Color(red: 0.15, green: 0.13, blue: 0.12)
-                   : Color(red: 0.998, green: 0.992, blue: 0.990)
+        s == .dark ? Color(red: 0.13, green: 0.13, blue: 0.16)
+                   : Color(red: 0.993, green: 0.990, blue: 0.998)
     }
     static func examBorder(_ s: ColorScheme) -> Color {
-        s == .dark ? Color(red: 0.38, green: 0.32, blue: 0.28)
-                   : Color(red: 0.85, green: 0.65, blue: 0.50)
+        s == .dark ? Color(red: 0.28, green: 0.28, blue: 0.38)
+                   : Color(red: 0.52, green: 0.50, blue: 0.65)
     }
-    /// 시험용 메인 주황색 (기존 examBlue 대체)
-    static var examOrange: Color { Color(red: 0.95, green: 0.45, blue: 0.15) }
-    /// 해설 골드 (기존 유지)
+    /// TOPIK 파랑 (시험 느낌)
+    static var examBlue: Color { Color(red: 0.95, green: 0.45, blue: 0.10) }
+    /// 해설 골드
     static var examGold: Color { Color(red: 0.70, green: 0.48, blue: 0.08) }
     
     // Fallback colors for safety if needed
@@ -37,29 +37,25 @@ private extension Color {
 struct ReadingView: View {
     @Binding var isTabBarHidden: Bool
 
-    // MARK: - Retry 모드 상태 (기존 로직 유지)
-    @State private var currentQuestionIndex = 0
     @State private var selectedAnswer: String?
     @State private var showAnswer = false
     @State private var showExplanation = false
 
-    // MARK: - 그룹 모드 상태 (기존 로직 유지)
+    // MARK: - 그룹 모드 상태
     @State private var questionGroups:       [QuestionGroup] = []
     @State private var currentGroupIndex:    Int             = 0
     @State private var groupAnswers:         [UUID: String]  = [:]
     @State private var groupShowExplanation: Set<UUID>       = []
 
-    // MARK: - 공통 상태 (기존 로직 유지)
+    // MARK: - 공통 상태
     @State private var progress:          Double  = 0
     @State private var score:             Int     = 0
     @State private var showFullscreenImage = false
     @State private var showNextQuestion   = false
     @State private var showMenu           = false
     @State private var isSpeaking         = false
-    @State private var fontScale:         CGFloat = 1.2
+    @State private var fontScale:          CGFloat = 1.2
     @State private var showResultSheet    = false
-    @State private var wrongAnswers:      [Int]   = []
-    @State private var isRetryMode        = false
     @State private var showPurchaseView   = false
 
     @StateObject private var storeManager        = StoreKitManager.shared
@@ -68,7 +64,6 @@ struct ReadingView: View {
     @State private var selectedSet: Int? = nil
     @State private var questions:   [Question] = []
 
-    // 5회차 추가 -> 5회차까지 관리
     @State private var set1Progress: Double = 0
     @State private var set2Progress: Double = 0
     @State private var set3Progress: Double = 0
@@ -83,25 +78,20 @@ struct ReadingView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass)   private var verticalSizeClass
 
-    private let level:   String = "Topik1"
+    private let level:   String = "JLPTN1"
     private var quizGroup: String { "Group1_set\(selectedSet ?? 0)" }
     private let synthesizer = AVSpeechSynthesizer()
     private var cs: ColorScheme { colorScheme }
 
-    // MARK: - Derived (기존 로직 유지)
+    // MARK: - Derived
 
     private var currentGroup: QuestionGroup? {
         guard !questionGroups.isEmpty, currentGroupIndex < questionGroups.count else { return nil }
         return questionGroups[currentGroupIndex]
     }
     
-    private var currentQuestion: Question {
-        guard !questions.isEmpty else { return Question(question: "", options: [], answer: "") }
-        return questions[wrongAnswers[currentQuestionIndex]]
-    }
-    
-    private var totalQuestionsCount: Int { isRetryMode ? wrongAnswers.count : questions.count }
-    private var totalGroupCount:     Int { isRetryMode ? wrongAnswers.count : questionGroups.count }
+    private var totalQuestionsCount: Int { questions.count }
+    private var totalGroupCount:     Int { questionGroups.count }
 
     private var isCurrentQuestionLocked: Bool {
         guard let set = selectedSet else { return false }
@@ -117,8 +107,8 @@ struct ReadingView: View {
             var range = (text as NSString).range(of: word)
             while range.location != NSNotFound {
                 attributed.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-                // 주황색 테마에 맞춰 밑줄 색상 변경
-                attributed.addAttribute(.underlineColor, value: UIColor.systemOrange, range: range)
+                // TOPIK 스타일에 맞춰 밑줄 색상 변경
+                attributed.addAttribute(.underlineColor, value: UIColor.systemBlue, range: range)
                 let next = range.location + range.length
                 guard next < text.count else { break }
                 range = (text as NSString).range(of: word, options: [], range: NSRange(location: next, length: text.count - next))
@@ -147,21 +137,7 @@ struct ReadingView: View {
 
                                         VStack(spacing: 16) {
                                             if !questions.isEmpty {
-                                                if isRetryMode {
-                                                    singleQuestionContent(
-                                                        question:       currentQuestion,
-                                                        questionIndex:  wrongAnswers[currentQuestionIndex],
-                                                        selectedOpt:    selectedAnswer,
-                                                        isAnswered:     showAnswer,
-                                                        showExpl:       showExplanation,
-                                                        geoWidth:       geometry.size.width,
-                                                        onSelect:       { selectAnswerRetry($0) },
-                                                        onNext:         { moveToNextQuestion() },
-                                                        onToggleExpl:   { showExplanation.toggle() },
-                                                        isExplEntitled: isExplanationEntitled,
-                                                        isLastQuestion: currentQuestionIndex >= totalQuestionsCount - 1
-                                                    )
-                                                } else if let group = currentGroup {
+                                                if let group = currentGroup {
                                                     if group.isMulti {
                                                         multiGroupContent(group: group, geoWidth: geometry.size.width)
                                                     } else {
@@ -195,7 +171,7 @@ struct ReadingView: View {
                             }
 
                         } else {
-                            // MARK: 세트 선택 화면 (주황색 테마 적용)
+                            // MARK: 세트 선택 화면 (TOPIK 스타일)
                             Color.examPaper(cs).ignoresSafeArea()
                             GeometryReader { geo in
                                 VStack(spacing: 0) {
@@ -210,11 +186,11 @@ struct ReadingView: View {
                                     }
                                     .padding(.horizontal, 8)
                                     ScrollView {
-                                        // 5회차 추가 -> 5개 세트 전달
+                                        // 5개 세트만 전달
                                         setSelectionGrid(geo: geo, maxSets: 5,
                                                          progresses: [set1Progress, set2Progress, set3Progress, set4Progress, set5Progress],
                                                          icon: "book.fill",
-                                                         unlockedColor: Color.examOrange)
+                                                         unlockedColor: Color.examBlue)
                                     }
                                 }
                             }
@@ -230,10 +206,7 @@ struct ReadingView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .tabBar)
         .fullScreenCover(isPresented: $showFullscreenImage) {
-            let imageName: String? = {
-                if isRetryMode { return currentQuestion.imageName }
-                return currentGroup?.sharedImageName
-            }()
+            let imageName = currentGroup?.sharedImageName
             if let name = imageName, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                let image = UIImage(named: name) {
                 FullscreenImageView(image: image) { showFullscreenImage = false }
@@ -247,7 +220,7 @@ struct ReadingView: View {
         .fullScreenCover(isPresented: $showResultSheet) { resultSheet }
         .onAppear {
             isTabBarHidden = true
-            if let set = selectedSet, !isRetryMode {
+            if let set = selectedSet {
                 let saved = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set\(set)")
                 currentGroupIndex = saved < questionGroups.count ? saved : 0
                 progress = Double(currentGroupIndex) / Double(max(questionGroups.count, 1))
@@ -258,23 +231,27 @@ struct ReadingView: View {
         }
         .onDisappear {
             isTabBarHidden = false
-            if let set = selectedSet, !isRetryMode {
+            if let set = selectedSet {
                 DatabaseManager.shared.saveProgress(level: level, quizGroup: "Group1_set\(set)", index: currentGroupIndex)
             }
             refreshSetProgress()
             synthesizer.stopSpeaking(at: .immediate)
         }
         .onChange(of: currentGroupIndex) { _, newValue in
-            if let set = selectedSet, !isRetryMode {
+            if let set = selectedSet {
                 DatabaseManager.shared.saveProgress(level: level, quizGroup: "Group1_set\(set)", index: newValue)
             }
             progress = Double(newValue) / Double(max(totalGroupCount, 1))
             refreshSetProgress()
         }
-        .onChange(of: currentQuestionIndex) { _, newValue in
-            if isRetryMode {
-                progress = Double(newValue) / Double(max(totalQuestionsCount, 1))
+        // CloudKit 복원 시 갱신
+        .onReceive(NotificationCenter.default.publisher(for: .jlptCloudRestoreCompleted)) { _ in
+            if let set = selectedSet {
+                let saved = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set\(set)")
+                currentGroupIndex = saved < questionGroups.count ? saved : 0
+                progress = Double(currentGroupIndex) / Double(max(questionGroups.count, 1))
             }
+            refreshSetProgress()
         }
     }
 
@@ -288,13 +265,12 @@ struct ReadingView: View {
                         Label("처음부터 다시", systemImage: "arrow.counterclockwise")
                     }
                     Button {
-                        if let set = selectedSet, !isRetryMode {
+                        if let set = selectedSet {
                             DatabaseManager.shared.saveProgress(level: level, quizGroup: "Group1_set\(set)", index: currentGroupIndex)
                         }
-                        selectedSet = nil; currentGroupIndex = 0; currentQuestionIndex = 0
+                        selectedSet = nil; currentGroupIndex = 0
                         groupAnswers = [:]; groupShowExplanation = []; selectedAnswer = nil
                         showAnswer = false; showExplanation = false; progress = 0
-                        wrongAnswers = []; isRetryMode = false
                     } label: { Label("회차 선택", systemImage: "list.number") }
                     Button { dismiss() } label: {
                         Label("메인 화면으로", systemImage: "house.fill")
@@ -316,7 +292,7 @@ struct ReadingView: View {
                 VStack(spacing: 3) {
                     Text("JLPT")
                         .font(.system(size: 10, weight: .bold, design: .monospaced))
-                        .foregroundColor(Color.examOrange)
+                        .foregroundColor(Color.examBlue)
                         .kerning(1.5)
                     Text("読  解")
                         .font(.system(size: 12, weight: .medium))
@@ -335,8 +311,8 @@ struct ReadingView: View {
             .frame(height: 50)
 
             VStack(spacing: 3) {
-                Rectangle().fill(Color.examOrange).frame(height: 2)
-                Rectangle().fill(Color.examOrange.opacity(0.25)).frame(height: 1)
+                Rectangle().fill(Color.examBlue).frame(height: 2)
+                Rectangle().fill(Color.examBlue.opacity(0.25)).frame(height: 1)
             }
         }
         .background(Color.examCard(cs))
@@ -348,7 +324,7 @@ struct ReadingView: View {
         GeometryReader { g in
             ZStack(alignment: .leading) {
                 Color.examBorder(cs).opacity(0.18)
-                Color.examOrange.opacity(0.65)
+                Color.examBlue.opacity(0.65)
                     .frame(width: g.size.width *
                            CGFloat(currentGroupIndex + 1) /
                            CGFloat(max(totalGroupCount, 1)))
@@ -491,7 +467,7 @@ struct ReadingView: View {
 
                     HStack(alignment: .top, spacing: 10) {
                         ZStack {
-                            Circle().fill(Color.examOrange).frame(width: 22, height: 22)
+                            Circle().fill(Color.examBlue).frame(width: 22, height: 22)
                             Text("\(idx + 1)")
                                 .font(.system(size: 11, weight: .bold))
                                 .foregroundColor(.white)
@@ -545,10 +521,10 @@ struct ReadingView: View {
                              imageName: String?, geoWidth: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 0) {
-                Rectangle().fill(Color.examOrange).frame(width: 4)
+                Rectangle().fill(Color.examBlue).frame(width: 4)
                 Text("지  문")
                     .font(.system(size: 9, weight: .bold))
-                    .foregroundColor(Color.examOrange)
+                    .foregroundColor(Color.examBlue)
                     .kerning(2)
                     .padding(.leading, 10)
                 Spacer()
@@ -582,7 +558,7 @@ struct ReadingView: View {
         .clipShape(RoundedRectangle(cornerRadius: 4))
         .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.examBorder(cs), lineWidth: 1.5))
         .overlay(alignment: .topLeading) {
-            Rectangle().fill(Color.examOrange).frame(width: 4)
+            Rectangle().fill(Color.examBlue).frame(width: 4)
                 .clipShape(RoundedRectangle(cornerRadius: 2))
         }
     }
@@ -730,18 +706,18 @@ struct ReadingView: View {
                 Spacer()
                 Text(label)
                     .font(.custom("Hiragino Sans", size: 14 * fontScale, relativeTo: .body))
-                    .foregroundColor(cs == .dark ? .white.opacity(0.85) : Color.examOrange)
+                    .foregroundColor(cs == .dark ? .white.opacity(0.85) : Color.examBlue)
                     .padding(.vertical, 14)
                 Image(systemName: "arrow.right")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(cs == .dark ? .white.opacity(0.5) : Color.examOrange.opacity(0.7))
+                    .foregroundColor(cs == .dark ? .white.opacity(0.5) : Color.examBlue.opacity(0.7))
                 Spacer()
             }
             .frame(maxWidth: .infinity)
             .background(Color.examCard(cs))
             .clipShape(RoundedRectangle(cornerRadius: 4))
             .overlay(RoundedRectangle(cornerRadius: 4)
-                .stroke(Color.examOrange.opacity(cs == .dark ? 0.55 : 0.75), lineWidth: 1.5))
+                .stroke(Color.examBlue.opacity(cs == .dark ? 0.55 : 0.75), lineWidth: 1.5))
         }
     }
 
@@ -759,7 +735,7 @@ struct ReadingView: View {
                 VStack(spacing: 6) {
                     Text("JLPT")
                         .font(.system(size: 10, weight: .bold, design: .monospaced))
-                        .foregroundColor(Color.examOrange).kerning(2)
+                        .foregroundColor(Color.examBlue).kerning(2)
                     Text("채 점 결 과")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(cs == .dark ? .white : .black)
@@ -768,8 +744,8 @@ struct ReadingView: View {
                 .padding(.bottom, 28)
 
                 VStack(spacing: 3) {
-                    Rectangle().fill(Color.examOrange).frame(height: 2)
-                    Rectangle().fill(Color.examOrange.opacity(0.25)).frame(height: 1)
+                    Rectangle().fill(Color.examBlue).frame(height: 2)
+                    Rectangle().fill(Color.examBlue.opacity(0.25)).frame(height: 1)
                 }
                 .padding(.horizontal, 32)
 
@@ -778,13 +754,13 @@ struct ReadingView: View {
                     Divider()
                     resultRow(label: "오  답", value: "\(wrong)",   color: Color(red: 0.65, green: 0.10, blue: 0.12))
                     Divider()
-                    resultRow(label: "정답률", value: "\(pct)％",   color: Color.examOrange)
+                    resultRow(label: "정답률", value: "\(pct)％",   color: Color.examBlue)
                 }
                 .padding(.vertical, 28).padding(.horizontal, 36)
 
                 VStack(spacing: 3) {
-                    Rectangle().fill(Color.examOrange.opacity(0.25)).frame(height: 1)
-                    Rectangle().fill(Color.examOrange).frame(height: 2)
+                    Rectangle().fill(Color.examBlue.opacity(0.25)).frame(height: 1)
+                    Rectangle().fill(Color.examBlue).frame(height: 2)
                 }
                 .padding(.horizontal, 32)
 
@@ -794,10 +770,10 @@ struct ReadingView: View {
                             DatabaseManager.shared.resetProgress(level: level, quizGroup: "Group1_set\(set)")
                             DatabaseManager.shared.saveProgress(level: level, quizGroup: "Group1_set\(set)", index: 0)
                         }
-                        currentGroupIndex = 0; currentQuestionIndex = 0
+                        currentGroupIndex = 0
                         groupAnswers = [:]; groupShowExplanation = []
                         selectedAnswer = nil; showAnswer = false; showExplanation = false
-                        progress = 0; score = 0; wrongAnswers = []; isRetryMode = false
+                        progress = 0; score = 0
                         selectedSet = nil; questions = []; questionGroups = []
                         showResultSheet = false
                         dismiss()
@@ -806,24 +782,8 @@ struct ReadingView: View {
                             .font(.system(size: 15, weight: .medium))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity).padding(.vertical, 14)
-                            .background(Color.examOrange)
+                            .background(Color.examBlue)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
-                    }
-
-                    if !isRetryMode && !wrongAnswers.isEmpty {
-                        Button {
-                            currentQuestionIndex = 0; selectedAnswer = nil
-                            showAnswer = false; showExplanation = false
-                            score = 0; isRetryMode = true; progress = 0
-                            showResultSheet = false
-                        } label: {
-                            Text("틀린 문제만 다시 풀기")
-                                .font(.system(size: 15, weight: .medium))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity).padding(.vertical, 14)
-                                .background(Color(red: 0.52, green: 0.37, blue: 0.06))
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                        }
                     }
                 }
                 .padding(.horizontal, 32).padding(.top, 24)
@@ -847,51 +807,47 @@ struct ReadingView: View {
         }
     }
 
-    // MARK: - Logic (기존 로직 100% 동일 유지)  ────────────────────────────────────────────
+    // MARK: - Logic  ────────────────────────────────────────────
 
     private func explanationEntitled(for questionIndex: Int) -> Bool {
         if storeManager.isPremium { return true }
-        if let set = selectedSet, set == 1, questionIndex <= 4 { return true } // ReadingView 기존 <= 4 제한 유지
+        if let set = selectedSet, set == 1, questionIndex <= 4 { return true }
         return false
     }
 
     private var isExplanationEntitled: Bool {
         if storeManager.isPremium { return true }
-        if isRetryMode { return explanationEntitled(for: wrongAnswers[currentQuestionIndex]) }
         let firstIdx = currentGroup?.questionIndices.first ?? currentGroupIndex
         return explanationEntitled(for: firstIdx)
-    }
-
-    private func selectAnswerRetry(_ answer: String) {
-        selectedAnswer = answer; showAnswer = true
-        if answer == currentQuestion.answer { score += 1 }
     }
 
     private func selectAnswerInGroup(question: Question, questionIndex: Int, answer: String) {
         guard groupAnswers[question.id] == nil else { return }
         groupAnswers[question.id] = answer
-        if answer == question.answer { score += 1 }
-        else if !wrongAnswers.contains(questionIndex) { wrongAnswers.append(questionIndex) }
+        
+        if answer == question.answer {
+            score += 1
+            // 🌟 정답을 맞힌 경우 기존 오답 노트에서 제거
+            removeIncorrectNoteIfNeeded(questionIndex: questionIndex)
+        } else {
+            // 🌟 틀린 경우 오답 노트에 자동 저장
+            saveIncorrectNoteIfEligible(questionIndex: questionIndex)
+        }
     }
 
-    private func moveToNextQuestion() {
-        // 기존 ReadingView의 Paywall 로직 유지
-        if !storeManager.isPremium, selectedSet == 1 {
-            if currentQuestionIndex >= 2 {
-                showPurchaseView = true
-                return
-            }
-        }
-        
-        if currentQuestionIndex < totalQuestionsCount - 1 {
-            currentQuestionIndex += 1
-            selectedAnswer = nil; showAnswer = false; showExplanation = false
-            refreshSetProgress()
-        } else { showResultSheet = true }
+    // MARK: - 오답 노트 연동
+
+    private func saveIncorrectNoteIfEligible(questionIndex: Int) {
+        guard let set = selectedSet, explanationEntitled(for: questionIndex) else { return }
+        DatabaseManager.shared.saveIncorrectAnswer(level: level, quizGroup: "Group1_set\(set)", questionIndex: questionIndex)
+    }
+
+    private func removeIncorrectNoteIfNeeded(questionIndex: Int) {
+        guard let set = selectedSet else { return }
+        DatabaseManager.shared.deleteIncorrectAnswer(level: level, quizGroup: "Group1_set\(set)", questionIndex: questionIndex)
     }
 
     private func moveToNextGroup() {
-        // 기존 ReadingView의 Paywall 로직 유지
         if !storeManager.isPremium, selectedSet == 1 {
             if currentGroupIndex >= 2 {
                 showPurchaseView = true
@@ -908,19 +864,17 @@ struct ReadingView: View {
     }
 
     private func loadQuestionsForSet(_ set: Int) {
-        questions      = DataLoader.load(set: set) // DataLoader 유지
+        questions      = DataLoader.load(set: set)
         questionGroups = DataLoader.groupQuestions(questions)
         let saved = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set\(set)")
         currentGroupIndex    = saved < questionGroups.count ? saved : 0
-        currentQuestionIndex = 0
         progress             = Double(currentGroupIndex) / Double(max(questionGroups.count, 1))
         groupAnswers = [:]; groupShowExplanation = []
         selectedAnswer = nil; showAnswer = false; showExplanation = false
-        wrongAnswers = []; isRetryMode = false
     }
 
+    // MARK: - refreshSetProgress() (set1 ~ set5)
     private func refreshSetProgress() {
-        // 5회차 추가 -> 5회차까지 계산
         let q1 = DataLoader.load(set: 1)
         let s1 = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set1")
         let g1 = DataLoader.groupQuestions(q1)
@@ -930,17 +884,17 @@ struct ReadingView: View {
         let s2 = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set2")
         let g2 = DataLoader.groupQuestions(q2)
         set2Progress = g2.isEmpty ? 0 : Double(min(s2, max(g2.count - 1, 0))) / Double(max(g2.count, 1))
-        
+
         let q3 = DataLoader.load(set: 3)
         let s3 = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set3")
         let g3 = DataLoader.groupQuestions(q3)
         set3Progress = g3.isEmpty ? 0 : Double(min(s3, max(g3.count - 1, 0))) / Double(max(g3.count, 1))
-        
+
         let q4 = DataLoader.load(set: 4)
         let s4 = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set4")
         let g4 = DataLoader.groupQuestions(q4)
         set4Progress = g4.isEmpty ? 0 : Double(min(s4, max(g4.count - 1, 0))) / Double(max(g4.count, 1))
-        
+
         let q5 = DataLoader.load(set: 5)
         let s5 = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set5")
         let g5 = DataLoader.groupQuestions(q5)
@@ -948,9 +902,9 @@ struct ReadingView: View {
     }
 
     private func resetToFirstQuestion() {
-        currentGroupIndex = 0; currentQuestionIndex = 0; progress = 0; score = 0
+        currentGroupIndex = 0; progress = 0; score = 0
         groupAnswers = [:]; groupShowExplanation = []; selectedAnswer = nil
-        showAnswer = false; showExplanation = false; wrongAnswers = []; isRetryMode = false
+        showAnswer = false; showExplanation = false
         DatabaseManager.shared.resetProgress(level: level, quizGroup: quizGroup)
         if let set = selectedSet {
             DatabaseManager.shared.saveProgress(level: level, quizGroup: "Group1_set\(set)", index: 0)
@@ -959,10 +913,10 @@ struct ReadingView: View {
 
     private func resetAndDismiss() {
         if let set = selectedSet { DatabaseManager.shared.resetProgress(level: level, quizGroup: "Group1_set\(set)") }
-        currentGroupIndex = 0; currentQuestionIndex = 0; groupAnswers = [:]
+        currentGroupIndex = 0; groupAnswers = [:]
         groupShowExplanation = []; selectedAnswer = nil; showAnswer = false
         showExplanation = false; progress = 0; score = 0; selectedSet = nil
-        questions = []; questionGroups = []; wrongAnswers = []; isRetryMode = false
+        questions = []; questionGroups = []
         isTabBarHidden = false; dismiss()
     }
 }

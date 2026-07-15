@@ -1,4 +1,3 @@
-// WordController.swift
 import Foundation
 import Combine
 
@@ -14,9 +13,7 @@ class WordController: ObservableObject {
         AudioManager.shared.speakJapanese(text: word.reading)
     }
 
-    func toggleTool() {
-        isEraser.toggle()
-    }
+    func toggleTool() { isEraser.toggle() }
 
     func nextWord(totalWords: Int) {
         if currentWordIndex < totalWords - 1 {
@@ -24,8 +21,7 @@ class WordController: ObservableObject {
             showGuide = true
             ProgressManager.shared.saveWordProgress(wordIndex: currentWordIndex)
         } else {
-            showCompletionScreen = true
-            ProgressManager.shared.clearWordProgress()
+            showCompletionScreen = true // 🌟 clearWordProgress() 삭제됨
         }
     }
 

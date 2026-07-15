@@ -1,4 +1,3 @@
-// GrammarController.swift
 import Foundation
 import Combine
 
@@ -10,13 +9,8 @@ class GrammarController: ObservableObject {
 
     let examples: [GrammarExample] = VocabDataLoader.shared.grammarExamples
 
-    func speakGrammar(_ grammar: String) {
-        AudioManager.shared.speakJapanese(text: grammar)
-    }
-
-    func speakExample(_ example: String) {
-        AudioManager.shared.speakJapanese(text: example)
-    }
+    func speakGrammar(_ grammar: String) { AudioManager.shared.speakJapanese(text: grammar) }
+    func speakExample(_ example: String) { AudioManager.shared.speakJapanese(text: example) }
 
     func nextExample(totalExamples: Int) {
         if currentExampleIndex < totalExamples - 1 {
@@ -24,8 +18,7 @@ class GrammarController: ObservableObject {
             showExample = false
             ProgressManager.shared.saveGrammarProgress(grammarIndex: currentExampleIndex)
         } else {
-            showCompletionScreen = true
-            ProgressManager.shared.clearGrammarProgress()
+            showCompletionScreen = true // 🌟 clearGrammarProgress() 삭제됨
         }
     }
 
