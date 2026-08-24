@@ -71,6 +71,70 @@
         }
       }
     },
+    "%@x" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@x"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "en" : {
@@ -233,7 +297,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%1$lld／%2$lld"
           }
         },
@@ -264,7 +328,68 @@
       }
     },
     "%lld%%" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
     },
     "%lld회" : {
       "localizations" : {
@@ -283,7 +408,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld fois"
+            "value" : "Session %lld"
           }
         },
         "id" : {
@@ -295,7 +420,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "第%lldラウンド"
+            "value" : "第%lld回"
           }
         },
         "ko" : {
@@ -332,16 +457,131 @@
     },
     "%lld회 · %lld번" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round %1$lld · No. %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronda %1$lld · N.º %2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session %1$lld · N° %2$lld"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronde %1$lld · No. %2$lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%1$lld回 · 第%2$lld問"
+          }
+        },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%1$lld회 · %2$lld번"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รอบที่ %1$lld · ข้อที่ %2$lld"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vòng %1$lld · Câu %2$lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%1$lld轮 · 第%2$lld题"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%1$lld回 · 第%2$lld題"
           }
         }
       }
     },
     "%lld회 · 음성 문항" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Round %lld · Audio Question"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronda %lld · Pregunta de audio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session %lld · Question audio"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronde %lld · Pertanyaan Audio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%lld回 · 音声問題"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld회 · 음성 문항"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รอบที่ %lld · คำถามเสียง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vòng %lld · Câu hỏi âm thanh"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%lld轮 · 语音题"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%lld回 · 語音題"
+          }
+        }
+      }
     },
     "explanation.not_available" : {
       "localizations" : {
@@ -728,7 +968,6 @@
       }
     },
     "menu.grammar" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -793,7 +1032,6 @@
       }
     },
     "menu.listening" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -858,7 +1096,6 @@
       }
     },
     "menu.reading" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -923,7 +1160,6 @@
       }
     },
     "menu.wordlist" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -988,7 +1224,6 @@
       }
     },
     "menu.writing" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1053,10 +1288,132 @@
       }
     },
     "note.subject.listening" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audición"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écoute"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendengarkan"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聴解"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "듣기"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "การฟัง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nghe hiểu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "听力"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聽力"
+          }
+        }
+      }
     },
     "note.subject.reading" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lectura"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lecture"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membaca"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "読解"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "읽기"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "การอ่าน"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đọc hiểu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阅读"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閱讀"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -1634,6 +1991,134 @@
         }
       }
     },
+    "purchase.feature.playback_speed.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review at 0.5x to 1.5x speed after checking the answer."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repasa a una velocidad de 0.5x a 1.5x después de comprobar la respuesta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Révisez à une vitesse de 0.5x à 1.5x après avoir vérifié la réponse."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ulas pada kecepatan 0.5x hingga 1.5x setelah memeriksa jawaban."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正解を確認した後、0.5倍〜1.5倍速で復習できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정답 확인 후 0.5x ~ 1.5x 배속으로 복습하세요."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ทบทวนด้วยความเร็ว 0.5x ถึง 1.5x หลังจากตรวจสอบคำตอบ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ôn tập ở tốc độ 0.5x đến 1.5x sau khi xem đáp án."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确认答案后，以 0.5 倍到 1.5 倍的语速进行复习。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認答案後，以 0.5 倍到 1.5 倍的語速進行複習。"
+          }
+        }
+      }
+    },
+    "purchase.feature.playback_speed.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust Audio Playback Speed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustar velocidad de reproducción de audio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuster la vitesse de lecture audio"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesuaikan Kecepatan Putar Audio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声再生速度の調整"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오디오 재생 속도 조절"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปรับความเร็วในการเล่นเสียง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Điều chỉnh tốc độ phát âm thanh"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "调节音频播放速度"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "調節音訊播放速度"
+          }
+        }
+      }
+    },
     "purchase.feature.reading_explanations.description" : {
       "localizations" : {
         "en" : {
@@ -1762,138 +2247,7 @@
         }
       }
     },
-    "purchase.feature.recording.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check your pronunciation accuracy after practice."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comprueba la precisión de tu pronunciación después de practicar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous pouvez vérifier votre précision après l’exercice de prononciation."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Periksa akurasi pengucapan Anda setelah berlatih."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "練習後に発音の正確さを確認できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "발음 연습 후 정확도를 확인할 수 있습니다."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ตรวจสอบความแม่นยำในการออกเสียงหลังการฝึก"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kiểm tra độ chính xác phát âm sau khi luyện tập."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "练习后检查你的发音准确度。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "練習後可檢查你的發音準確度。"
-          }
-        }
-      }
-    },
-    "purchase.feature.recording.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recording Assessment"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Evaluación de grabación"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Évaluation de l’enregistrement"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Penilaian Rekaman"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "録音評価"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "녹음 평가"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ประเมินการบันทึกเสียง"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Đánh giá ghi âm"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "录音评估"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "錄音評估"
-          }
-        }
-      }
-    },
     "purchase.feature.remove_ads.description" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1958,7 +2312,6 @@
       }
     },
     "purchase.feature.remove_ads.title" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2023,7 +2376,6 @@
       }
     },
     "purchase.feature.transcript.description" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2088,7 +2440,6 @@
       }
     },
     "purchase.feature.transcript.title" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2227,7 +2578,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "publicación mensual"
+            "value" : "Mensual"
           }
         },
         "fr" : {
@@ -2257,7 +2608,7 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "การตีพิมพ์เป็นรายเดือน"
+            "value" : "รายเดือน"
           }
         },
         "vi" : {
@@ -2495,7 +2846,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kebijakan Perlindungan Informasi pribadi"
+            "value" : "Kebijakan Privasi"
           }
         },
         "ja" : {
@@ -2815,7 +3166,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nikmati aplikasi atau aplikasi tanpa batasan iklan atau batasan."
+            "value" : "Nikmati aplikasi tanpa iklan atau batasan."
           }
         },
         "ja" : {
@@ -2867,7 +3218,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "términos y condiciones de uso"
+            "value" : "Términos y condiciones"
           }
         },
         "fr" : {
@@ -2967,7 +3318,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nâng cấp lên mức cao cấp"
+            "value" : "Nâng cấp lên Premium"
           }
         },
         "zh-Hans" : {
@@ -3048,71 +3399,6 @@
         }
       }
     },
-    "Return" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Return"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volver"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Retour"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "戻る"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "돌아가기"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ย้อนกลับ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quay lại"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "返回"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "返回"
-          }
-        }
-      }
-    },
     "Return to Main Screen" : {
       "localizations" : {
         "en" : {
@@ -3173,71 +3459,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "返回主畫面"
-          }
-        }
-      }
-    },
-    "Select Set" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select Set"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionar conjunto"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélection du set"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pilih Set"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "セット選択"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "세트 선택"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เลือกชุด"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chọn bộ"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "选择套题"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選擇套組"
           }
         }
       }
@@ -3307,7 +3528,68 @@
       }
     },
     "구독 시 모든 모의고사 및 오답노트를 무제한으로 학습할 수 있습니다." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscribe to study all mock exams and incorrect answer notes without limits."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suscríbete para estudiar todos los exámenes de prueba y notas de respuestas incorrectas sin límites."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abonnez-vous pour étudier tous les examens blancs et les notes d'erreurs en illimité."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berlangganan untuk mempelajari semua ujian tiruan dan catatan jawaban salah tanpa batas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購読すると、すべての模擬試験と間違えた問題ノートを無制限に学習できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구독 시 모든 모의고사 및 오답노트를 무제한으로 학습할 수 있습니다."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สมัครสมาชิกเพื่อเรียนรู้ข้อสอบจำลองและบันทึกคำตอบที่ผิดทั้งหมดได้อย่างไม่จำกัด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng ký để học tất cả các bài thi thử và ghi chú câu trả lời sai không giới hạn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "订阅后即可无限制地学习所有模拟考试和错题本。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訂閱後即可無限制地學習所有模擬考試和錯題本。"
+          }
+        }
+      }
     },
     "구독 필요" : {
       "localizations" : {
@@ -3341,6 +3623,12 @@
             "value" : "購読が必要"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구독 필요"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3350,7 +3638,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "cần đăng ký mua"
+            "value" : "Cần đăng ký"
           }
         },
         "zh-Hans" : {
@@ -3527,6 +3815,12 @@
             "value" : "文字サイズ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "글자 크기"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3583,6 +3877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再開"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 시작"
           }
         },
         "th" : {
@@ -3643,6 +3943,12 @@
             "value" : "次の問題"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 문제"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3701,6 +4007,12 @@
             "value" : "単語帳"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어장"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3728,7 +4040,68 @@
       }
     },
     "데이터 집계 중..." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggregating data..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregando datos..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agrégation des données..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengumpulkan data..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データを集計中..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데이터 집계 중..."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กำลังรวบรวมข้อมูล..."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang tổng hợp dữ liệu..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在汇总数据..."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在彙總資料..."
+          }
+        }
+      }
     },
     "메인 화면으로" : {
       "localizations" : {
@@ -3760,6 +4133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メイン画面へ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메인 화면으로"
           }
         },
         "th" : {
@@ -3820,6 +4199,12 @@
             "value" : "メインに戻る"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메인으로 돌아가기"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3851,7 +4236,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "question"
+            "value" : "Question"
           }
         },
         "es" : {
@@ -3869,13 +4254,19 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "pertanyaan"
+            "value" : "Pertanyaan"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "問題."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문  제"
           }
         },
         "th" : {
@@ -3904,70 +4295,133 @@
         }
       }
     },
-    "문법 연습" : {
-      "extractionState" : "stale",
+    "문제" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "grammar practice"
+            "value" : "Question"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ejercicios gramaticales"
+            "value" : "Pregunta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "exercice de grammaire"
+            "value" : "Question"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "tata bahasa"
+            "value" : "Pertanyaan"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文法練習"
+            "value" : "問題"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문제"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "การฝึกไวยากรณ์"
+            "value" : "คำถาม"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "luyện tập ngữ pháp"
+            "value" : "Câu hỏi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "语法练习"
+            "value" : "问题"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文法練習"
+            "value" : "問題"
           }
         }
       }
     },
-    "문제" : {
-
-    },
     "문제 데이터를 불러올 수 없습니다." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not load question data."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudieron cargar los datos de la pregunta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger les données de la question."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal memuat data pertanyaan."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "問題データを読み込めませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문제 데이터를 불러올 수 없습니다."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่สามารถโหลดข้อมูลคำถามได้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể tải dữ liệu câu hỏi."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法加载题目数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法載入題目資料。"
+          }
+        }
+      }
     },
     "보통" : {
       "localizations" : {
@@ -4001,6 +4455,12 @@
             "value" : "中"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보통"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4028,7 +4488,68 @@
       }
     },
     "삭제" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ลบ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        }
+      }
     },
     "세트 선택" : {
       "localizations" : {
@@ -4060,6 +4581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セットを選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세트 선택"
           }
         },
         "th" : {
@@ -4111,13 +4638,19 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "skrip "
+            "value" : "Skrip"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スクリプト."
+            "value" : "スクリプト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트"
           }
         },
         "th" : {
@@ -4178,6 +4711,12 @@
             "value" : "スクリプトなし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트가 없습니다."
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4204,132 +4743,258 @@
         }
       }
     },
-    "쓰기 연습" : {
-      "extractionState" : "stale",
+    "연습" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Writing Practice"
+            "value" : "Practice"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ejercicios de escritura"
+            "value" : "Práctica"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exercice d'écriture"
+            "value" : "Exercice"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "latihan menulis"
+            "value" : "Latihan"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書き取り練習"
+            "value" : "練習"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연습"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "การฝึกเขียน."
+            "value" : "ฝึกฝน"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "tập viết"
+            "value" : "Luyện tập"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "写作练习"
+            "value" : "练习"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "寫作練習"
+            "value" : "練習"
           }
         }
       }
     },
-    "연습" : {
-
-    },
     "영역별 학습 현황" : {
-
-    },
-    "오답 노트" : {
-
-    },
-    "오답노트" : {
-
-    },
-    "오답입니다" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incorrect."
+            "value" : "Learning Progress by Section"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incorrecto."
+            "value" : "Progreso de aprendizaje por sección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mauvaise réponse"
+            "value" : "Progrès d'apprentissage par section"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salah."
+            "value" : "Kemajuan Belajar per Bagian"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不正解です。"
+            "value" : "分野別学習状況"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영역별 학습 현황"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่ถูกต้อง"
+            "value" : "ความคืบหน้าการเรียนรู้ตามหมวดหมู่"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sai."
+            "value" : "Tiến độ học tập theo phần"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不正确。"
+            "value" : "各模块学习进度"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不正確。"
+            "value" : "各單元學習進度"
+          }
+        }
+      }
+    },
+    "오답 노트" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect Answer Note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota de respuestas incorrectas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes d'erreurs"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Jawaban Salah"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間違えた問題ノート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오답 노트"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บันทึกคำตอบที่ผิด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi chú câu trả lời sai"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "错题本"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錯題本"
+          }
+        }
+      }
+    },
+    "오답노트" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect Answer Note"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota de respuestas incorrectas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes d'erreurs"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Jawaban Salah"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間違えた問題ノート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오답노트"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บันทึกคำตอบที่ผิด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi chú câu trả lời sai"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "错题本"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錯題本"
           }
         }
       }
@@ -4364,6 +5029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
           }
         },
         "th" : {
@@ -4415,13 +5086,19 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "suara"
+            "value" : "Suara"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "音声"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "음  성"
           }
         },
         "th" : {
@@ -4482,6 +5159,12 @@
             "value" : "一時停止"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일시정지"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4525,7 +5208,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Petite"
+            "value" : "Petit"
           }
         },
         "id" : {
@@ -4538,6 +5221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "小"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작게"
           }
         },
         "th" : {
@@ -4598,6 +5287,12 @@
             "value" : "再生"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "재  생"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4613,147 +5308,151 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "再生"
+            "value" : "播放"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "再生"
+            "value" : "播放"
           }
         }
       }
     },
     "저장된 오답이 없습니다" : {
-
-    },
-    "정답을 입력하세요 %@" : {
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please enter the correct answer %@"
+            "value" : "No incorrect answers saved."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Por favor, introduce la respuesta correcta %@"
+            "value" : "No hay respuestas incorrectas guardadas."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Veuillez entrer la bonne réponse %@"
+            "value" : "Aucune mauvaise réponse enregistrée."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Silakan masukkan jawaban yang benar %@"
+            "value" : "Tidak ada jawaban salah yang disimpan."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正解を入力してください %@"
+            "value" : "保存された間違えた問題はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장된 오답이 없습니다"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "กรุณาใส่คำตอบที่ถูกต้อง %@"
+            "value" : "ไม่มีคำตอบที่ผิดที่บันทึกไว้"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vui lòng nhập đáp án đúng %@"
+            "value" : "Không có câu trả lời sai nào được lưu."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请输入正确答案 %@"
+            "value" : "没有保存的错题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "請輸入正確答案 %@"
-          }
-        }
-      }
-    },
-    "정답입니다!" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correct!"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Correcto!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bonne réponse !"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Benar!"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正解です！"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ถูกต้อง!"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chính xác!"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正确！"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "答對了！"
+            "value" : "沒有儲存的錯題。"
           }
         }
       }
     },
     "종합 달성률" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overall Completion Rate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasa de finalización general"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taux d'accomplissement global"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tingkat Penyelesaian Keseluruhan"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "総合達成率"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "종합 달성률"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "อัตราความสำเร็จโดยรวม"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tỷ lệ hoàn thành tổng thể"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "综合达成率"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "綜合達成率"
+          }
+        }
+      }
     },
     "지  문" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "sentence"
+            "value" : "Sentence"
           }
         },
         "es" : {
@@ -4778,6 +5477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "問題文"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지  문"
           }
         },
         "th" : {
@@ -4829,13 +5534,19 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "skor"
+            "value" : "Skor"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点結果"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채 점 결 과"
           }
         },
         "th" : {
@@ -4881,7 +5592,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "desde el principio"
+            "value" : "Depuis le début"
           }
         },
         "id" : {
@@ -4894,6 +5605,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最初から"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처음부터"
           }
         },
         "th" : {
@@ -4954,6 +5671,12 @@
             "value" : "最初からやり直す"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처음부터 다시"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5010,6 +5733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最初へ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처음으로"
           }
         },
         "th" : {
@@ -5070,6 +5799,12 @@
             "value" : "大"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "크게"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5097,75 +5832,260 @@
       }
     },
     "통계" : {
-
-    },
-    "틀린 문제만 다시 풀기" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retry incorrect questions only"
+            "value" : "Statistics"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver a resolver solo las preguntas incorrectas"
+            "value" : "Estadísticas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Réessayer uniquement les questions incorrectes"
+            "value" : "Statistiques"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ulangi hanya pertanyaan yang salah"
+            "value" : "Statistik"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "間違った問題の解き直し"
+            "value" : "統計"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "통계"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "แก้โจทย์ที่ผิดอีกครั้ง"
+            "value" : "สถิติ"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Giải lại câu hỏi sai"
+            "value" : "Thống kê"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重做错误题"
+            "value" : "统计"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重做錯誤題"
+            "value" : "統計"
           }
         }
       }
     },
     "프리미엄 기능 잠금 해제" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock Premium Features"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desbloquear funciones premium"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Débloquer les fonctionnalités premium"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Fitur Premium"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プレミアム機能のロック解除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프리미엄 기능 잠금 해제"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปลดล็อกฟีเจอร์พรีเมียม"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mở khóa tính năng Premium"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁高级功能"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖高級功能"
+          }
+        }
+      }
     },
     "학습 연습" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learning Practice"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Práctica de aprendizaje"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pratique d'apprentissage"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latihan Belajar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学習練習"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학습 연습"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ฝึกฝนการเรียนรู้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luyện tập học tập"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学习练习"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "學習練習"
+          }
+        }
+      }
     },
     "학습 통계" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learning Statistics"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadísticas de aprendizaje"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistiques d'apprentissage"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistik Belajar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学習統計"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학습 통계"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สถิติการเรียนรู้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thống kê học tập"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学习统计"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "學習統計"
+          }
+        }
+      }
     },
     "해  설" : {
       "localizations" : {
@@ -5190,13 +6110,19 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "penjelasan"
+            "value" : "Penjelasan"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "解説"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해  설"
           }
         },
         "th" : {
@@ -5257,6 +6183,12 @@
             "value" : "ホームに戻る"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "홈 화면으로 돌아가기"
+          }
+        },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5313,6 +6245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ラウンドを選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회차 선택"
           }
         },
         "th" : {
@@ -5858,25 +6796,25 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You've solved all the grammar puzzles.\nGreat job! 🎉"
+            "value" : "You've solved all the grammar puzzles.\nGreat job!🎉"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Has resuelto todos los puzzles de gramática.\n¡Excelente trabajo! 🎉"
+            "value" : "Has resuelto todos los puzzles de gramática.\n¡Excelente trabajo!🎉"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous avez résolu tous les puzzles de grammaire.\nBravo ! 🎉"
+            "value" : "Vous avez résolu tous les puzzles de grammaire.\nBravo !🎉"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anda telah menyelesaikan semua puzzle tata bahasa.\nKerja bagus! 🎉"
+            "value" : "Anda telah menyelesaikan semua puzzle tata bahasa.\nKerja bagus!🎉"
           }
         },
         "ja" : {
@@ -5888,19 +6826,19 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문법 퍼즐을 모두 풀었습니다.\n수고하셨어요! 🎉"
+            "value" : "문법 퍼즐을 모두 풀었습니다.\n수고하셨어요!🎉"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "คุณแก้ปริศนาไวยากรณ์ทั้งหมดแล้ว\nยอดเยี่ยมมาก! 🎉"
+            "value" : "คุณแก้ปริศนาไวยากรณ์ทั้งหมดแล้ว\nยอดเยี่ยมมาก!🎉"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bạn đã giải tất cả câu đố ngữ pháp.\nChúc mừng! 🎉"
+            "value" : "Bạn đã giải tất cả câu đố ngữ pháp.\nChúc mừng!🎉"
           }
         },
         "zh-Hans" : {
@@ -5922,7 +6860,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "listening"
+            "value" : "Listening"
           }
         },
         "es" : {
@@ -5934,13 +6872,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "escucha"
+            "value" : "Écoute"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "mendengar"
+            "value" : "Mendengarkan"
           }
         },
         "ja" : {
@@ -5970,7 +6908,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "听"
+            "value" : "听力"
           }
         },
         "zh-Hant" : {
@@ -5986,7 +6924,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "reading"
+            "value" : "Reading"
           }
         },
         "es" : {
@@ -5998,13 +6936,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "lectura"
+            "value" : "Lecture"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "membaca"
+            "value" : "Membaca"
           }
         },
         "ja" : {
@@ -6041,6 +6979,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "閱讀"
+          }
+        }
+      }
+    },
+    "音声データを準備しています...\n(初回のみ)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing audio data...\n(First time only)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparando datos de audio...\n(Solo la primera vez)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préparation des données audio...\n(La première fois uniquement)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyiapkan data audio...\n(Hanya pertama kali)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声データを準備しています...\n(初回のみ)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "음성 데이터를 준비하고 있습니다...\n(최초 1회)"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กำลังเตรียมข้อมูลเสียง...\n(ครั้งแรกเท่านั้น)"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang chuẩn bị dữ liệu âm thanh...\n(Chỉ lần đầu)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在准备语音数据...\n(仅限首次)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在準備語音資料...\n(僅限首次)"
           }
         }
       }

@@ -164,6 +164,7 @@ struct PurchaseView: View {
                 description: LocalizedStringKey("purchase.feature.remove_ads.description")
             )
             Divider().background(Color.white.opacity(0.08)).padding(.horizontal, 16)
+            
             PremiumFeatureRow(
                 icon: "globe.americas.fill",
                 iconColor: .blue,
@@ -171,11 +172,21 @@ struct PurchaseView: View {
                 description: LocalizedStringKey("purchase.feature.reading_explanations.description")
             )
             Divider().background(Color.white.opacity(0.08)).padding(.horizontal, 16)
+            
             PremiumFeatureRow(
                 icon: "doc.text.fill",
                 iconColor: .cyan,
                 title: LocalizedStringKey("purchase.feature.transcript.title"),
                 description: LocalizedStringKey("purchase.feature.transcript.description")
+            )
+            Divider().background(Color.white.opacity(0.08)).padding(.horizontal, 16)
+            
+            // 🌟 새로 추가된 오디오 배속 조절 기능
+            PremiumFeatureRow(
+                icon: "speedometer",
+                iconColor: .green,
+                title: LocalizedStringKey("purchase.feature.playback_speed.title"),
+                description: LocalizedStringKey("purchase.feature.playback_speed.description")
             )
         }
         .background(
@@ -380,6 +391,10 @@ struct PurchaseView: View {
             } else {
                 _ = try await storeManager.purchaseMonthlySubscription()
             }
+            
+            // ✅ 결제 성공 시 뷰 닫고 자동으로 원래 화면 복귀
+            dismiss()
+            
         } catch {
             alertTitle = NSLocalizedString("purchase.alert.failed.title", comment: "")
             alertMessage = error.localizedDescription
@@ -390,11 +405,16 @@ struct PurchaseView: View {
     private func restorePurchases() async {
         do {
             try await storeManager.restorePurchases()
-            alertTitle = NSLocalizedString("purchase.alert.restore.title", comment: "")
-            alertMessage = storeManager.isSubscribed ?
-                NSLocalizedString("purchase.alert.restore.success", comment: "") :
-                NSLocalizedString("purchase.alert.restore.none", comment: "")
-            showAlert = true
+            
+            if storeManager.isSubscribed {
+                // ✅ 복원 성공 시 바로 뷰 닫고 자동으로 원래 화면 복귀
+                dismiss()
+            } else {
+                // 복원할 항목이 없는 경우에만 알림 띄우기
+                alertTitle = NSLocalizedString("purchase.alert.restore.title", comment: "")
+                alertMessage = NSLocalizedString("purchase.alert.restore.none", comment: "")
+                showAlert = true
+            }
         } catch {
             alertTitle = NSLocalizedString("purchase.alert.restore_failed.title", comment: "")
             alertMessage = error.localizedDescription
@@ -515,7 +535,3 @@ struct PremiumFeatureRow: View {
         .padding(.vertical, 14)
     }
 }
-
-
-
-
