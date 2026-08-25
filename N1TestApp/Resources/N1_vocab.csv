@@ -1,5 +1,5 @@
 kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
-商う,あき나う,"거래하다, 장사하다","To trade, to deal in",商う,经商
+商う,あきなう,"거래하다, 장사하다","To trade, to deal in",商う,经商
 値する,あたいする,"가치가 있다, 마땅하다","To be worth, to deserve",値する,值得
 歩む,あゆむ,"걷다, 나아가다","To walk, to go",歩む,行走
 言い張る,いいはる,"주장하다, 고집하다","To insist, to assert",言い張る,坚持
@@ -12,7 +12,7 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 打ち切る,うちきる,"중단하다, 그만두다","To discontinue, to stop",打ち切る,终止
 打ち込む,うちこむ,"몰두하다, 집중하다","To devote oneself to, to focus on",打ち込む,投入
 訴える,うったえる,"호소하다, 불평하다","To appeal, to complain",訴える,申诉
-促す,うなが스,"촉구하다, 재촉하다","To urge, to prompt",促す,催促
+促す,うながす,"촉구하다, 재촉하다","To urge, to prompt",促す,催促
 敬う,うやまう,"존경하다, 공경하다","To respect, to honor",敬う,尊敬
 恨む,うらむ,"원망하다, 원한을 품다","To hold a grudge, to resent",恨む,怨恨
 潤う,うるおう,"촉촉해지다, 혜택을 받다","To be moist, to benefit",潤う,滋润
@@ -42,7 +42,7 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 拒む,こばむ,"거절하다, 거부하다","To refuse, to reject",拒む,拒绝
 遮る,さえぎる,"가로막다, 방해하다","To interrupt, to block",遮る,遮挡
 逆らう,さからう,"거스르다, 반대하다","To oppose, to resist",逆らう,违背
-差し引く,사しひく,"공제하다, 빼다","To deduct, to subtract",差し引く,扣除
+差し引く,さしひく,"공제하다, 빼다","To deduct, to subtract",差し引く,扣除
 授ける,さずける,"수여하다, 부여하다","To grant, to award",授ける,授予
 察する,さっする,"추측하다, 감지하다","To guess, to sense",察する,察觉
 悟る,さとる,"깨닫다, 인식하다","To realize, to perceive",悟る,领悟
@@ -86,9 +86,9 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 担う,になう,"맡다, 책임지다","To bear, to shoulder",担う,承担
 鈍る,にぶる,"둔해지다, 약해지다","To become dull, to weaken",钝る,迟钝
 逃れる,のがれる,"피하다, 벗어나다","To escape, to evade",逃れる,逃避
-臨무,のぞむ,"직면하다, 참석하다","To face, to attend",臨む,面临
+臨む,のぞむ,"직면하다, 참석하다","To face, to attend",臨む,面临
 乗り出す,のりだす,"나서다, 착수하다","To embark on, to set out",乗り出す,着手
-剥がす,はがす,"벗기다, 제거하다","To peel off, to remove",剥가す,剥下
+剥がす,はがす,"벗기다, 제거하다","To peel off, to remove",剥がす,剥下
 捗る,はかどる,"진척되다, 진행되다","To make progress, to advance",捗る,进展
 励む,はげむ,"노력하다, 열심히 하다","To strive, to work hard",励む,努力
 弾む,はずむ,"튀다, 기운차다","To bounce, to spring",弾む,弹跳
@@ -102,16 +102,16 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 響く,ひびく,"울리다, 반향하다","To resonate, to echo",響く,回响
 秘める,ひめる,"숨기다, 감추다","To hide, to conceal",秘める,隐藏
 翻す,ひるがえす,"뒤집다, 전환하다","To flip, to turn over",翻す,翻转
-隔てる,へ다てる,"분리하다, 나누다","To separate, to divide",隔てる,隔离
+隔てる,へだてる,"분리하다, 나누다","To separate, to divide",隔てる,隔离
 解ける,ほどける,"풀리다, 풀어지다","To come loose, to be untied",解ける,解开
 施す,ほどこす,"베풀다, 시행하다","To give, to perform",施す,施行
-멸망하다,ほろびる,"멸망하다, 파괴되다","To perish, to be ruined",滅びる,灭亡
+滅びる,ほろびる,"멸망하다, 파괴되다","To perish, to be ruined",滅びる,灭亡
 紛れる,まぎれる,"섞이다, 사라지다","To be diverted, to disappear into",紛れる,混淆
 惑わす,まどわす,"혼란시키다, 속이다","To bewilder, to perplex",惑わす,迷惑
 免れる,まぬかれる,"피하다, 벗어나다","To escape, to avoid",免れる,避免
 見合わせる,みあわせる,"연기하다, 비교하다","To postpone, to compare",見合わせる,推迟
 見失う,みうしなう,"놓치다, 잃어버리다","To lose sight of, to miss",見失う,迷失
-見落とす,미おとす,"놓치다, 간과하다","To overlook, to miss",見落도す,忽略
+見落とす,みおとす,"놓치다, 간과하다","To overlook, to miss",見落とす,忽略
 設ける,もうける,"설립하다, 준비하다","To establish, to prepare",設ける,设立
 催す,もよおす,"개최하다, 느끼다","To hold (an event), to feel (a sensation)",催す,举办
 養う,やしなう,"기르다, 부양하다","To foster, to support",養う,养育
@@ -128,7 +128,7 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 薄暗い,うすぐらい,"어두운, 희미한","Dim, gloomy",薄暗い,昏暗
 疑わしい,うたがわしい,"의심스러운, 수상한","Doubtful, questionable",疑わしい,可疑
 重々しい,おもおもしい,"엄숙한, 무거운","Grave, solemn",重々しい,庄重
-清이,きよい,"깨끗한, 순수한","Pure, clean",清이,清澈
+清い,きよい,"깨끗한, 순수한","Pure, clean",清い,清澈
 心地よい,ここちよい,"기분 좋은, 편안한","Comfortable, pleasant",心地よい,舒适
 心無い,こころない,"무심한, 냉정한","Heartless, cruel",心無い,无情
 快い,こころよい,"기분 좋은, 유쾌한","Pleasant, agreeable",快い,愉快
@@ -149,11 +149,11 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 厳かな,おごそかな,"엄숙한, 장엄한","Solemn, dignified",厳かな,庄严
 愚かな,おろかな,"어리석은, 바보 같은","Foolish, stupid",愚かな,愚蠢
 疎かな,おろそかな,"소홀한, 부주의한","Negligent, careless",疎かな,疏忽
-画一적인,かくいつてき나,"표준화된, 획일적인","Standardized, uniform",画一的な,统一
+画一的な,かくいつてきな,"표준화된, 획일적인","Standardized, uniform",画一的な,统一
 頑なな,かたくなな,"고집스러운, 완고한","Stubborn, obstinate",頑なな,固执
-画期적인,かっきてきな,"획기적인, 혁신적인","Groundbreaking, epoch-making",画期적인,划时代
+画期的な,かっきてきな,"획기적인, 혁신적인","Groundbreaking, epoch-making",画期的な,划时代
 頑固な,がんこな,"고집스러운, 완고한","Stubborn, persistent",頑固な,顽固
-頑丈な,がんじょう나,"튼튼한, 견고한","Sturdy, strong",頑丈な,坚固
+頑丈な,がんじょうな,"튼튼한, 견고한","Sturdy, strong",頑丈な,坚固
 肝心な,かんじんな,"중요한, 필수적인","Essential, crucial",肝心な,关键
 閑静な,かんせいな,"조용한, 평온한","Quiet, tranquil",閑静な,安静
 完璧な,かんぺきな,"완벽한, 완전한","Perfect, flawless",完璧な,完美
@@ -166,29 +166,29 @@ kanji,reading,meaning_ko,meaning_en,meaning_ja,meaning_zh
 堅実な,けんじつな,"견실한, 안정된","Steady, solid",堅実な,稳健
 厳正な,げんせいな,"엄격한, 엄정한","Strict, rigorous",厳正な,严格
 顕著な,けんちょな,"현저한, 두드러진","Notable, conspicuous",顕著な,显著
-高尚な,こうしょうな,"고상한, 우아한","Noble, refined",高尚나,高尚
+高尚な,こうしょうな,"고상한, 우아한","Noble, refined",高尚な,高尚
 巧妙な,こうみょうな,"교묘한, 영리한","Clever, skillful",巧妙な,巧妙
 克明な,こくめいな,"상세한, 정확한","Detailed, accurate",克明な,详细
 質素な,しっそな,"검소한, 소박한","Simple, plain",質素な,朴素
 柔軟な,じゅうなんな,"유연한, 융통성 있는","Flexible, adaptable",柔軟な,灵活
 迅速な,じんそくな,"신속한, 빠른","Swift, prompt",迅速な,迅速
-健やかな,す코야카나,"건강한, 튼튼한","Healthy, sound",健やかな,健康
+健やかな,すこやかな,"건강한, 튼튼한","Healthy, sound",健やかな,健康
 速やかな,すみやかな,"빠른, 신속한","Speedy, quick",速やかな,快速
 性急な,せいきゅうな,"성급한, 조급한","Hasty, impatient",性急な,性急
-精巧나,せいこうな,"정교한, 섬세한","Exquisite, elaborate",精巧な,精巧
+精巧な,せいこうな,"정교한, 섬세한","Exquisite, elaborate",精巧な,精巧
 切実な,せつじつな,"절실한, 시급한","Urgent, pressing",切実な,迫切
 繊細な,せんさいな,"섬세한, 예민한","Delicate, sensitive",繊細な,细腻
 巧みな,たくみな,"교묘한, 숙련된","Skillful, clever",巧みな,巧妙
 丹念な,たんねんな,"꼼꼼한, 정성스러운","Careful, thorough",丹念な,细心
-手薄な,てうすな,"부족한, 인력이 모자란","Short-handed, lacking",手薄나,人手不足
+手薄な,てうすな,"부족한, 인력이 모자란","Short-handed, lacking",手薄な,人手不足
 的確な,てきかくな,"정확한, 정밀한","Accurate, precise",的確な,准确
 入念な,にゅうねんな,"꼼꼼한, 세심한","Meticulous, careful",入念な,细致
 煩雑な,はんざつな,"복잡한, 번거로운","Complicated, confusing",煩雑な,繁琐
 密かな,ひそかな,"비밀스러운, 은밀한","Secret, private",密かな,秘密
 頻繁な,ひんぱんな,"빈번한, 자주 있는","Frequent, constant",頻繁な,频繁
 無残な,むざんな,"잔인한, 무자비한","Cruel, ruthless",無残な,残忍
-무邪気な,むじゃきな,"순진한, 천진한","Innocent, naive",無邪気な,天真
-無謀な,むぼうな,"무모한, 경솔한","Reckless, rash",無謀나,鲁莽
+無邪気な,むじゃきな,"순진한, 천진한","Innocent, naive",無邪気な,天真
+無謀な,むぼうな,"무모한, 경솔한","Reckless, rash",無謀な,鲁莽
 綿密な,めんみつな,"면밀한, 꼼꼼한","Detailed, precise",綿密な,周密
 愉快な,ゆかいな,"유쾌한, 즐거운","Pleasant, delightful",愉快な,愉快
 緩やかな,ゆるやかな,"완만한, 부드러운","Gentle, slow",緩やかな,缓慢
