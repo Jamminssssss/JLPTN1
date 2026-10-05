@@ -15,6 +15,26 @@ struct GrammarExample {
     let translations: [String: String]
 }
 
+enum ContentLanguage {
+    static var currentKey: String {
+        let language = Locale.current.language
+        let code = language.languageCode?.identifier ?? "en"
+
+        guard code == "zh" else { return code }
+
+        if language.script?.identifier == "Hant" {
+            return "zh-Hant"
+        }
+
+        if let region = language.region?.identifier,
+           ["TW", "HK", "MO"].contains(region) {
+            return "zh-Hant"
+        }
+
+        return "zh-Hans"
+    }
+}
+
 final class VocabDataLoader {
 
     static let shared = VocabDataLoader()
@@ -23,7 +43,20 @@ final class VocabDataLoader {
     lazy var words: [Word] = parseWords()
     lazy var grammarExamples: [GrammarExample] = parseGrammar()
 
-    // MARK: N1_vocab.csv (kanji, reading, meaning_ko/en/ja/zh)
+    private let localizedColumns: [(key: String, suffixes: [String])] = [
+        ("ko", ["ko"]),
+        ("en", ["en"]),
+        ("ja", ["ja"]),
+        ("zh-Hans", ["zh_hans", "zh"]),
+        ("zh-Hant", ["zh_hant"]),
+        ("fr", ["fr"]),
+        ("id", ["id"]),
+        ("es", ["es"]),
+        ("th", ["th"]),
+        ("vi", ["vi"])
+    ]
+
+    // MARK: N1_vocab.csv
 
     private func parseWords() -> [Word] {
         guard let url = Bundle.main.url(forResource: "N1_vocab", withExtension: "csv"),
@@ -32,10 +65,13 @@ final class VocabDataLoader {
             return []
         }
 
+        let rows = parseCSV(raw)
+        guard let header = rows.first else { return [] }
+        let columns = columnIndices(from: header)
+
         var result: [Word] = []
-        for (i, row) in parseCSV(raw).enumerated() {
-            if i == 0, row.first?.lowercased().trimmed == "kanji" { continue }
-            guard row.count >= 6 else { continue }
+        for row in rows.dropFirst() {
+            guard row.count >= 2 else { continue }
 
             let kanji = row[0].trimmed
             let reading = row[1].trimmed
@@ -44,18 +80,13 @@ final class VocabDataLoader {
             result.append(Word(
                 kanji: kanji,
                 reading: reading,
-                meanings: [
-                    "ko": row[2].trimmed,
-                    "en": row[3].trimmed,
-                    "ja": row[4].trimmed,
-                    "zh-Hans": row[5].trimmed
-                ]
+                meanings: localizedValues(prefix: "meaning", row: row, columns: columns)
             ))
         }
         return result
     }
 
-    // MARK: N1_grammar.csv (grammar, example, meaning_ko/en/ja/zh, translation_ko/en/ja/zh)
+    // MARK: N1_grammar.csv
 
     private func parseGrammar() -> [GrammarExample] {
         guard let url = Bundle.main.url(forResource: "N1_grammar", withExtension: "csv"),
@@ -64,10 +95,13 @@ final class VocabDataLoader {
             return []
         }
 
+        let rows = parseCSV(raw)
+        guard let header = rows.first else { return [] }
+        let columns = columnIndices(from: header)
+
         var result: [GrammarExample] = []
-        for (i, row) in parseCSV(raw).enumerated() {
-            if i == 0, row.first?.lowercased().trimmed == "grammar" { continue }
-            guard row.count >= 10 else { continue }
+        for row in rows.dropFirst() {
+            guard row.count >= 2 else { continue }
 
             let grammar = row[0].trimmed
             let example = row[1].trimmed
@@ -76,21 +110,38 @@ final class VocabDataLoader {
             result.append(GrammarExample(
                 grammar: grammar,
                 example: example,
-                meanings: [
-                    "ko": row[2].trimmed,
-                    "en": row[3].trimmed,
-                    "ja": row[4].trimmed,
-                    "zh-Hans": row[5].trimmed
-                ],
-                translations: [
-                    "ko": row[6].trimmed,
-                    "en": row[7].trimmed,
-                    "ja": row[8].trimmed,
-                    "zh-Hans": row[9].trimmed
-                ]
+                meanings: localizedValues(prefix: "meaning", row: row, columns: columns),
+                translations: localizedValues(prefix: "translation", row: row, columns: columns)
             ))
         }
         return result
+    }
+
+    private func columnIndices(from header: [String]) -> [String: Int] {
+        Dictionary(uniqueKeysWithValues: header.enumerated().map {
+            ($0.element.trimmed.lowercased(), $0.offset)
+        })
+    }
+
+    private func localizedValues(
+        prefix: String,
+        row: [String],
+        columns: [String: Int]
+    ) -> [String: String] {
+        var values: [String: String] = [:]
+
+        for language in localizedColumns {
+            for suffix in language.suffixes {
+                guard let index = columns["\(prefix)_\(suffix)"], index < row.count else { continue }
+                let value = row[index].trimmed
+                if !value.isEmpty {
+                    values[language.key] = value
+                    break
+                }
+            }
+        }
+
+        return values
     }
 
     // MARK: RFC 4180 CSV Parser (멀티라인 필드 지원)
