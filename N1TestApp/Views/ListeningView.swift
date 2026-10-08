@@ -65,9 +65,10 @@ struct ListeningView: View {
     @State private var isDownloadingODR: Bool = false
 
     @StateObject private var storeManager = StoreKitManager.shared
+    @State private var isFinishingStudy = false
+
     @StateObject private var interstitialViewModel = InterstitialViewModel()
     @ObservedObject private var adControlManager = AdControlManager.shared
-    @ObservedObject private var appAdManager = AppAdManager.shared
     
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismiss) private var dismiss
@@ -79,7 +80,7 @@ struct ListeningView: View {
     private var quizGroup: String { "Group2_set\(selectedSet ?? 0)" }
     private var cs: ColorScheme { colorScheme }
     
-    private var shouldScheduleInterstitialAds: Bool {
+    private var shouldPreloadInterstitialAds: Bool {
         selectedSet == 1 && scenePhase == .active
             && adControlManager.shouldShowInterstitialAds
             && !showResultSheet && !showPurchaseView && !showFullscreenImage
@@ -188,6 +189,7 @@ struct ListeningView: View {
             }
         }
         .ignoresSafeArea(.container, edges: [.leading, .trailing])
+        .disabled(isFinishingStudy)
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .tabBar)
         .fullScreenCover(isPresented: $showFullscreenImage) {
@@ -223,9 +225,9 @@ struct ListeningView: View {
             refreshSetProgress()
             ODRManager.shared.releaseResource() // 🌟 뷰를 빠져나갈 때 ODR 메모리 해제
         }
-        .task(id: shouldScheduleInterstitialAds) {
-            guard shouldScheduleInterstitialAds else { return }
-            await interstitialViewModel.runRandomizedAds()
+        .task(id: shouldPreloadInterstitialAds) {
+            guard shouldPreloadInterstitialAds else { return }
+            await interstitialViewModel.loadAd()
         }
         .onChange(of: interstitialViewModel.isAdShowing) { _, showing in
             if showing {
@@ -659,6 +661,7 @@ struct ListeningView: View {
     }
 
     private func selectAnswer(_ answer: String) {
+        guard selectedAnswer == nil else { return }
         selectedAnswer = answer; showAnswer = true
         guard let question = currentQuestion else { return }
         if answer == question.answer {
@@ -681,13 +684,35 @@ struct ListeningView: View {
     }
     
     private func moveToNextQuestion() {
+        guard !isFinishingStudy else { return }
         if !storeManager.isPremium, selectedSet == 1 {
-            if currentQuestionIndex >= 2 { showPurchaseView = true; return }
+            if currentQuestionIndex >= 2 { finishStudy(showPurchase: true); return }
         }
         if currentQuestionIndex < totalQuestionsCount - 1 {
-            playbackRate = 1.0 // 🌟 다음 문제로 넘어갈 때 속도 초기화
-            stopAudio(); audioPlayer = nil; currentQuestionIndex += 1; selectedAnswer = nil; showAnswer = false; showScript = false; audioProgress = 0; isPlaying = false; setupAudio(); refreshSetProgress()
-        } else { showResultSheet = true }
+            stopAudio()
+            let advance = {
+                playbackRate = 1.0
+                audioPlayer = nil
+                currentQuestionIndex += 1
+                selectedAnswer = nil
+                showAnswer = false
+                showScript = false
+                audioProgress = 0
+                isPlaying = false
+                setupAudio()
+                refreshSetProgress()
+            }
+            // Ad audio can never overlap the listening question.
+            if selectedSet == 1, currentQuestionIndex == 0, selectedAnswer != nil {
+                isFinishingStudy = true
+                interstitialViewModel.showAtStudyBreak {
+                    advance()
+                    isFinishingStudy = false
+                }
+            } else {
+                advance()
+            }
+        } else { finishStudy(showPurchase: false) }
     }
     
     private func resetToFirstQuestion() {
@@ -710,6 +735,23 @@ struct ListeningView: View {
         if let start = question.startTime, let end = question.endTime, end > start { player.currentTime = start; setupEndTimeTimer() }
         else { player.currentTime = 0; endTimeTimer?.invalidate() }
         player.play(); isPlaying = true
+    }
+
+    /// The last "Next/Complete" action ends this learning segment.
+    private func finishStudy(showPurchase: Bool) {
+        guard !isFinishingStudy else { return }
+        isFinishingStudy = true
+        stopAudio()
+        let openNextScreen = {
+            isFinishingStudy = false
+            if showPurchase {
+                showPurchaseView = true
+            } else {
+                showResultSheet = true
+            }
+        }
+        // Results and the free-limit paywall open directly, without another full-screen ad.
+        openNextScreen()
     }
 
     private func loadQuestionsForSet(_ set: Int) {

@@ -15,10 +15,8 @@ struct PracticeWordView: View {
     @State private var fontScale: CGFloat = 1.0
     @State private var showPurchaseView = false
     @StateObject private var storeManager = StoreKitManager.shared
-
     @StateObject private var interstitialViewModel = InterstitialViewModel()
-    @ObservedObject private var appAdManager = AppAdManager.shared
-    @State private var adTimer: Timer?
+    @State private var isAdvancing = false
 
     @State private var penColor: Color = Color(UIColor.label)
     @State private var showColorPicker = false
@@ -54,6 +52,29 @@ struct PracticeWordView: View {
         canvasView.drawing = PKDrawing()
     }
 
+    private func advanceWord() {
+        guard !isAdvancing else { return }
+        guard storeManager.isSubscribed || wordController.currentWordIndex < 2 else {
+            speechSynthesizer.stopSpeaking(at: .immediate)
+            showPurchaseView = true
+            return
+        }
+        let hasPracticed = !canvasView.drawing.strokes.isEmpty
+        speechSynthesizer.stopSpeaking(at: .immediate)
+        isSpeaking = false
+        let advance = {
+            wordController.nextWord(totalWords: wordController.words.count)
+            resetForNewWord()
+            isAdvancing = false
+        }
+        isAdvancing = true
+        if wordController.currentWordIndex == 0, hasPracticed {
+            interstitialViewModel.showAtStudyBreak(onFinished: advance)
+        } else {
+            advance()
+        }
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -82,24 +103,13 @@ struct PracticeWordView: View {
                 }
             }
         }
+        .disabled(isAdvancing)
         .navigationBarBackButtonHidden(true)
         .toolbar { toolbarContent }
         .onAppear {
             wordController.loadProgress()
-            
-            if !appAdManager.hasPracticeWordAd {
-                adTimer?.invalidate()
-                adTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
-                    Task { @MainActor in
-                        await interstitialViewModel.loadAd()
-                        if interstitialViewModel.isAdReady {
-                            interstitialViewModel.showAd()
-                            appAdManager.hasPracticeWordAd = true
-                        }
-                    }
-                }
-            }
         }
+        .task { await interstitialViewModel.loadAd() }
         // 🌟 복원 후 즉시 갱신
         .onReceive(NotificationCenter.default.publisher(for: .jlptCloudRestoreCompleted)) { _ in
             wordController.loadProgress()
@@ -108,7 +118,6 @@ struct PracticeWordView: View {
         .onDisappear {
             speechSynthesizer.stopSpeaking(at: .immediate)
             isSpeaking = false
-            adTimer?.invalidate()
         }
         .fullScreenCover(isPresented: $showPurchaseView) { PurchaseView() }
     }
@@ -279,12 +288,7 @@ struct PracticeWordView: View {
                     colorPickerButton(isPortrait: isPortrait)
                     if wordController.currentWordIndex < wordController.words.count - 1 {
                         circleButton(icon: "arrow.right", isPortrait: isPortrait) {
-                            if storeManager.isSubscribed || wordController.currentWordIndex < 2 {
-                                wordController.nextWord(totalWords: wordController.words.count)
-                                resetForNewWord()
-                            } else {
-                                showPurchaseView = true
-                            }
+                            advanceWord()
                         }
                     }
                 }
@@ -320,12 +324,7 @@ struct PracticeWordView: View {
 
             if wordController.currentWordIndex < wordController.words.count - 1 {
                 circleButton(icon: "arrow.right", isPortrait: isPortrait) {
-                    if storeManager.isSubscribed || wordController.currentWordIndex < 2 {
-                        wordController.nextWord(totalWords: wordController.words.count)
-                        resetForNewWord()
-                    } else {
-                        showPurchaseView = true
-                    }
+                    advanceWord()
                 }
             }
         }
@@ -359,7 +358,6 @@ struct PracticeWordView: View {
             }
         }
     }
-
 
     // MARK: - 공통 원형 버튼
 
