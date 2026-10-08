@@ -57,16 +57,23 @@ extension AudioDataLoader {
             return []
         }
 
-        let rows = content
-            .components(separatedBy: "\n")
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-            .dropFirst() // 헤더 제거
+        return parseQuestions(from: content, fileName: fileName)
+    }
+
+    static func parseQuestions(from content: String, fileName: String = "CSV") -> [AudioQuestion] {
+        guard let records = try? CSVParser.parse(content), let header = records.first else {
+            print("❌ Invalid CSV: \(fileName)")
+            return []
+        }
+        let rows = records.dropFirst()
 
         var questions: [AudioQuestion] = []
 
-        for (index, row) in rows.enumerated() {
-            let columns = parseCSVLine(row)
+        for (index, columns) in rows.enumerated() {
+            guard columns.count == header.count else {
+                print("⚠️ Row \(index + 2) has \(columns.count) columns; expected \(header.count)")
+                continue
+            }
 
             // 최소 7개 컬럼 (question ~ audioFileName) 필요
             guard columns.count >= 7 else {
@@ -183,26 +190,4 @@ private extension String {
     var trimmed: String {
         trimmingCharacters(in: .whitespacesAndNewlines)
     }
-}
-
-// MARK: - CSV 파서
-
-private func parseCSVLine(_ line: String) -> [String] {
-    var result: [String] = []
-    var current = ""
-    var insideQuotes = false
-
-    for char in line {
-        if char == "\"" {
-            insideQuotes.toggle()
-        } else if char == "," && !insideQuotes {
-            result.append(current)
-            current = ""
-        } else {
-            current.append(char)
-        }
-    }
-
-    result.append(current)
-    return result
 }

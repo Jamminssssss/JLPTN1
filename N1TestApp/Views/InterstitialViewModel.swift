@@ -6,6 +6,8 @@ import Combine
 class InterstitialViewModel: NSObject, ObservableObject, FullScreenContentDelegate {
     private var interstitialAd: InterstitialAd?
     private let adControlManager = AdControlManager.shared
+    private var isLoadingAd = false
+    private let interstitialDelayRange: ClosedRange<Double> = 30...180
     
     @Published var isAdReady = false
     @Published var isAdShowing = false
@@ -14,7 +16,39 @@ class InterstitialViewModel: NSObject, ObservableObject, FullScreenContentDelega
     private var timeoutWorkItem: DispatchWorkItem?
     private let adTimeoutSeconds: TimeInterval = 10
 
+    /// 읽기·듣기 1회차에서 광고가 닫힌 뒤 매번 30~180초를 무작위로 기다립니다.
+    func runRandomizedAds() async {
+        while !Task.isCancelled && adControlManager.shouldShowInterstitialAds {
+            // 광고를 보는 동안에는 다음 광고의 대기 시간을 시작하지 않습니다.
+            if isAdShowing {
+                do {
+                    try await Task.sleep(for: .milliseconds(250))
+                } catch {
+                    return
+                }
+                continue
+            }
+            let delay = Double.random(in: interstitialDelayRange)
+            let preload = Task { if !isAdReady { await loadAd() } }
+            do {
+                try await Task.sleep(for: .seconds(delay))
+            } catch {
+                preload.cancel()
+                return
+            }
+            await preload.value
+            guard !Task.isCancelled, adControlManager.shouldShowInterstitialAds else { return }
+            guard UIApplication.shared.applicationState == .active,
+                  !AppOpenAdManager.shared.isAdShowing else { continue }
+            showAd()
+        }
+    }
+
     func loadAd() async {
+        guard !isLoadingAd else { return }
+        isLoadingAd = true
+        defer { isLoadingAd = false }
+
         // 광고제거 구매시 광고 로드하지 않음
         guard adControlManager.shouldShowInterstitialAds else {
             print("🚫 광고제거 구매로 인해 전면광고 로드 건너뜀")
@@ -39,7 +73,7 @@ class InterstitialViewModel: NSObject, ObservableObject, FullScreenContentDelega
             )
             
             // 로드 완료 후 다시 한번 체크 (비동기 로드 중에 구매가 완료될 수 있음)
-            guard adControlManager.shouldShowInterstitialAds else {
+            guard !Task.isCancelled, adControlManager.shouldShowInterstitialAds else {
                 print("🚫 광고 로드 완료 후 광고제거 구매 확인됨 - 광고 폐기")
                 isAdReady = false
                 return
@@ -85,6 +119,11 @@ class InterstitialViewModel: NSObject, ObservableObject, FullScreenContentDelega
             return
         }
         
+        // Avoid presenting over an app-open ad or another full-screen screen.
+        guard UIApplication.shared.applicationState == .active,
+              !AppOpenAdManager.shared.isAdShowing,
+              rootViewController.presentedViewController == nil else { return }
+
         // ⭐️ 타임아웃 설정
         setupAdTimeout()
         
@@ -152,6 +191,9 @@ class InterstitialViewModel: NSObject, ObservableObject, FullScreenContentDelega
     
     func adWillPresentFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("🎬 전면광고가 표시됩니다")
+        // The timeout protects presentation startup, not the time spent watching.
+        timeoutWorkItem?.cancel()
+        timeoutWorkItem = nil
         isAdShowing = true
     }
     

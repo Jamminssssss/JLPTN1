@@ -7,7 +7,6 @@ class AdControlManager: ObservableObject {
     static let shared = AdControlManager()
     
     @Published var shouldShowAds: Bool = true
-    
     private init() {
         // ✅ 초기 상태 설정 (StoreKitManager 직접 참조)
         updateAdVisibility()

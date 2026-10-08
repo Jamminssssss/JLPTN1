@@ -59,12 +59,25 @@ struct AudioQuestion: Identifiable, Codable {
 
     /// 기기 언어에 맞는 스크립트를 반환합니다.
     /// 해당 언어가 없으면 한국어(ko)로 폴백합니다.
-    func localizedScript(languageCode: String = Locale.current.language.languageCode?.identifier ?? "ko") -> String? {
+    func localizedScript(
+        languageCode: String = Locale.current.language.languageCode?.identifier ?? "ko",
+        scriptCode: String? = Locale.current.language.script?.identifier
+    ) -> String? {
         guard let scripts, !scripts.isEmpty else { return nil }
         // zh-Hans / zh-Hant 처리 (언더스코어 키로 저장됨)
         let normalized = languageCode
             .replacingOccurrences(of: "-", with: "_")
             .lowercased()
-        return scripts[normalized] ?? scripts["ko"]
+        let parts = normalized.components(separatedBy: "_")
+        let baseLanguage = parts[0]
+        if baseLanguage == "zh" {
+            let traditional = parts.contains("hant") || parts.contains("tw")
+                || parts.contains("hk") || parts.contains("mo")
+                || (normalized == "zh" && scriptCode?.lowercased() == "hant")
+            let key = traditional ? "zh_hant" : "zh_hans"
+            if let text = scripts[key] ?? scripts["zh_hans"] { return text }
+        }
+        return scripts[normalized] ?? scripts[baseLanguage]
+            ?? scripts["ko"] ?? scripts["en"] ?? scripts["ja"]
     }
 }

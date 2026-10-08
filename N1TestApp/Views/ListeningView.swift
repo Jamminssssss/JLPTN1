@@ -66,8 +66,10 @@ struct ListeningView: View {
 
     @StateObject private var storeManager = StoreKitManager.shared
     @StateObject private var interstitialViewModel = InterstitialViewModel()
+    @ObservedObject private var adControlManager = AdControlManager.shared
     @ObservedObject private var appAdManager = AppAdManager.shared
     
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -77,6 +79,12 @@ struct ListeningView: View {
     private var quizGroup: String { "Group2_set\(selectedSet ?? 0)" }
     private var cs: ColorScheme { colorScheme }
     
+    private var shouldScheduleInterstitialAds: Bool {
+        selectedSet == 1 && scenePhase == .active
+            && adControlManager.shouldShowInterstitialAds
+            && !showResultSheet && !showPurchaseView && !showFullscreenImage
+    }
+
     private var currentQuestion: AudioQuestion? {
         guard !audioQuestions.isEmpty, currentQuestionIndex < audioQuestions.count else { return nil }
         return audioQuestions[currentQuestionIndex]
@@ -214,6 +222,17 @@ struct ListeningView: View {
             stopAudio()
             refreshSetProgress()
             ODRManager.shared.releaseResource() // 🌟 뷰를 빠져나갈 때 ODR 메모리 해제
+        }
+        .task(id: shouldScheduleInterstitialAds) {
+            guard shouldScheduleInterstitialAds else { return }
+            await interstitialViewModel.runRandomizedAds()
+        }
+        .onChange(of: interstitialViewModel.isAdShowing) { _, showing in
+            if showing {
+                audioPlayer?.pause()
+                isPlaying = false
+                endTimeTimer?.invalidate()
+            }
         }
         .onChange(of: currentQuestionIndex) { _, newValue in
             if let set = selectedSet {

@@ -70,6 +70,7 @@ struct ReadingView: View {
     @State private var set4Progress: Double = 0
     @State private var set5Progress: Double = 0
 
+    @ObservedObject private var adControlManager = AdControlManager.shared
     @ObservedObject private var appAdManager = AppAdManager.shared
 
     @Environment(\.dismiss)             private var dismiss
@@ -118,6 +119,12 @@ struct ReadingView: View {
     }
 
     // MARK: - Body
+
+    private var shouldScheduleInterstitialAds: Bool {
+        selectedSet == 1 && scenePhase == .active
+            && adControlManager.shouldShowInterstitialAds
+            && !showResultSheet && !showPurchaseView && !showFullscreenImage
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -236,6 +243,10 @@ struct ReadingView: View {
             }
             refreshSetProgress()
             synthesizer.stopSpeaking(at: .immediate)
+        }
+        .task(id: shouldScheduleInterstitialAds) {
+            guard shouldScheduleInterstitialAds else { return }
+            await interstitialViewModel.runRandomizedAds()
         }
         .onChange(of: currentGroupIndex) { _, newValue in
             if let set = selectedSet {
@@ -424,6 +435,11 @@ struct ReadingView: View {
                            imageName: question.imageName, geoWidth: geoWidth)
             }
 
+            if let subQuestion = question.subQuestion, !subQuestion.isEmpty {
+                passageBox(text: subQuestion, underline: question.underline,
+                           imageName: nil, geoWidth: geoWidth)
+            }
+
             // 해설 (답한 후)
             if isAnswered {
                 explanationPanel(question: question, showExpl: showExpl,
@@ -450,8 +466,8 @@ struct ReadingView: View {
         VStack(alignment: .leading, spacing: 16) {
 
             // 공유 지문
-            if let passage = group.sharedPassage, !passage.isEmpty {
-                passageBox(text: passage, underline: group.sharedUnderline,
+            if group.sharedPassage != nil || group.sharedImageName != nil {
+                passageBox(text: group.sharedPassage, underline: group.sharedUnderline,
                            imageName: group.sharedImageName, geoWidth: geoWidth)
             }
 
@@ -920,4 +936,3 @@ struct ReadingView: View {
         isTabBarHidden = false; dismiss()
     }
 }
-
