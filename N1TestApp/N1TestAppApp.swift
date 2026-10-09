@@ -3,6 +3,7 @@ import GoogleMobileAds
 
 @main
 struct N1TestAppApp: App {
+    @UIApplicationDelegateAdaptor(FirebaseAppDelegate.self) private var appDelegate
     
     // ⭐️ 앱 시작 시 초기화
     init() {

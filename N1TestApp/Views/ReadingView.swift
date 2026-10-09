@@ -229,6 +229,7 @@ struct ReadingView: View {
         }
         .fullScreenCover(isPresented: $showResultSheet) { resultSheet }
         .onAppear {
+            FirebaseTelemetry.screen("reading")
             isTabBarHidden = true
             if let set = selectedSet {
                 let saved = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set\(set)")
@@ -904,6 +905,9 @@ struct ReadingView: View {
     private func finishStudy(showPurchase: Bool) {
         guard !isFinishingStudy else { return }
         isFinishingStudy = true
+        if !showPurchase, let set = selectedSet {
+            FirebaseTelemetry.log("study_complete", parameters: ["section": "reading", "set_number": set])
+        }
         synthesizer.stopSpeaking(at: .immediate)
         isSpeaking = false
         let openNextScreen = {
@@ -921,6 +925,9 @@ struct ReadingView: View {
     private func loadQuestionsForSet(_ set: Int) {
         answeredQuestionsThisSession = 0
         questions      = DataLoader.load(set: set)
+        if !questions.isEmpty {
+            FirebaseTelemetry.log("study_start", parameters: ["section": "reading", "set_number": set])
+        }
         questionGroups = DataLoader.groupQuestions(questions)
         let saved = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group1_set\(set)")
         currentGroupIndex    = saved < questionGroups.count ? saved : 0

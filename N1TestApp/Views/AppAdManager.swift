@@ -7,7 +7,9 @@ final class AppAdManager {
 
     static let shared = AppAdManager()
     private let now: () -> TimeInterval
-    private let minimumInterval: TimeInterval = 120
+    private var minimumInterval: TimeInterval {
+        AdRemoteConfig.shared.policy.minimumFullscreenInterval
+    }
     private var lastFinishedAt: TimeInterval?
     private var activeFormat: Format?
     private var purchaseScreens = 0

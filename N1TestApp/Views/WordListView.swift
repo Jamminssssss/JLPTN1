@@ -107,6 +107,7 @@ struct WordListView: View {
         .disabled(isChangingPage)
         .navigationViewStyle(StackNavigationViewStyle())
         .toolbar(.hidden, for: .tabBar)
+        .onAppear { FirebaseTelemetry.screen("word_list") }
         .task { await interstitialViewModel.loadAd() }
         .onDisappear {
             synthesizer.stopSpeaking(at: .immediate)

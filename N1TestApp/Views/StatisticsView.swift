@@ -28,7 +28,10 @@ struct StatisticsView: View {
             .padding(.horizontal, 20).padding(.bottom, 30)
         }
         .background(colorScheme == .dark ? Color(white: 0.05) : Color(white: 0.96))
-        .onAppear { calculateStatistics() }
+        .onAppear {
+            FirebaseTelemetry.screen("statistics")
+            calculateStatistics()
+        }
         .onReceive(NotificationCenter.default.publisher(for: .jlptCloudRestoreCompleted)) { _ in calculateStatistics() }
     }
     

@@ -107,6 +107,7 @@ struct PracticeWordView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar { toolbarContent }
         .onAppear {
+            FirebaseTelemetry.screen("vocabulary")
             wordController.loadProgress()
         }
         .task { await interstitialViewModel.loadAd() }

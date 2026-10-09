@@ -205,6 +205,7 @@ struct ListeningView: View {
             resultSheet
         }
         .onAppear {
+            FirebaseTelemetry.screen("listening")
             isTabBarHidden = true
             configureAudioSession()
             if let set = selectedSet {
@@ -741,6 +742,9 @@ struct ListeningView: View {
     private func finishStudy(showPurchase: Bool) {
         guard !isFinishingStudy else { return }
         isFinishingStudy = true
+        if !showPurchase, let set = selectedSet {
+            FirebaseTelemetry.log("study_complete", parameters: ["section": "listening", "set_number": set])
+        }
         stopAudio()
         let openNextScreen = {
             isFinishingStudy = false
@@ -756,6 +760,9 @@ struct ListeningView: View {
 
     private func loadQuestionsForSet(_ set: Int) {
         audioQuestions = AudioDataLoader.load(set: set)
+        if !audioQuestions.isEmpty {
+            FirebaseTelemetry.log("study_start", parameters: ["section": "listening", "set_number": set])
+        }
         let savedIndex = DatabaseManager.shared.loadProgress(level: level, quizGroup: "Group2_set\(set)")
         currentQuestionIndex = (savedIndex < audioQuestions.count) ? savedIndex : 0
         progress = audioQuestions.isEmpty ? 0 : Double(currentQuestionIndex) / Double(audioQuestions.count)

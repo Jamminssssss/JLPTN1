@@ -63,6 +63,7 @@ class StoreKitManager: ObservableObject {
             print("📦 구독 상품 \(products.count)개 로드 완료")
         } catch {
             errorMessage = "제품 정보를 불러올 수 없습니다: \(error.localizedDescription)"
+            FirebaseTelemetry.record(error, operation: "load_store_products")
             print("❌ 제품 로드 실패: \(error)")
         }
     }
@@ -88,17 +89,38 @@ class StoreKitManager: ObservableObject {
     private func purchaseSubscription(_ product: Product, type: SubscriptionType) async throws -> Transaction? {
         isLoading = true
         defer { isLoading = false }
-        let result = try await product.purchase()
+        let plan = type == .monthly ? "monthly" : "yearly"
+        FirebaseTelemetry.log("subscription_purchase_start", parameters: ["plan": plan])
+        let result: Product.PurchaseResult
+        do {
+            result = try await product.purchase()
+        } catch {
+            FirebaseTelemetry.log("subscription_purchase_failed", parameters: ["plan": plan])
+            FirebaseTelemetry.record(error, operation: "purchase_subscription")
+            throw error
+        }
         switch result {
         case .success(let verification):
-            let transaction = try checkVerified(verification)
+            let transaction: Transaction
+            do {
+                transaction = try checkVerified(verification)
+            } catch {
+                FirebaseTelemetry.log("subscription_purchase_failed", parameters: ["plan": plan])
+                FirebaseTelemetry.record(error, operation: "verify_subscription_purchase")
+                throw error
+            }
             await updateCustomerProductStatus()
             await transaction.finish()
             activeSubscriptionType = type
+            FirebaseTelemetry.log("subscription_purchase_success", parameters: ["plan": plan])
             print("✅ 구독 구매 성공: \(product.id)")
             return transaction
-        case .userCancelled: print("👤 구매 취소"); return nil
-        case .pending:       print("⏳ 구매 보류"); return nil
+        case .userCancelled:
+            FirebaseTelemetry.log("subscription_purchase_cancelled", parameters: ["plan": plan])
+            print("👤 구매 취소"); return nil
+        case .pending:
+            FirebaseTelemetry.log("subscription_purchase_pending", parameters: ["plan": plan])
+            print("⏳ 구매 보류"); return nil
         @unknown default:    return nil
         }
     }

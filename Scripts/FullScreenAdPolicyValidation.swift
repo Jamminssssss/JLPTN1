@@ -1,6 +1,11 @@
 import Foundation
 
-// swiftc N1TestApp/Views/AppAdManager.swift Scripts/FullScreenAdPolicyValidation.swift -o /tmp/full-screen-ad-policy
+// swiftc N1TestApp/Models/AdPolicy.swift N1TestApp/Views/AppAdManager.swift Scripts/FullScreenAdPolicyValidation.swift -o /tmp/full-screen-ad-policy
+@MainActor
+final class AdRemoteConfig {
+    static let shared = AdRemoteConfig()
+    var policy = AdPolicy()
+}
 @main
 enum FullScreenAdPolicyValidation {
     @MainActor
@@ -33,6 +38,10 @@ enum FullScreenAdPolicyValidation {
         time += 119
         precondition(!policy.canPresentFullScreenAd)
         time += 1
+        precondition(policy.canPresentFullScreenAd)
+        AdRemoteConfig.shared.policy = AdPolicy(values: ["fullscreen_ad_min_interval_seconds": "180"])
+        precondition(!policy.canPresentFullScreenAd)
+        time += 60
         precondition(policy.canPresentFullScreenAd)
         print("PASS: shared app-open/interstitial spacing, format ownership, nested purchase suppression and cooldown after purchase dismissal")
     }

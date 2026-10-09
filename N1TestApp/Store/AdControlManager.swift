@@ -11,6 +11,11 @@ class AdControlManager: ObservableObject {
         // ✅ 초기 상태 설정 (StoreKitManager 직접 참조)
         updateAdVisibility()
         
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(handlePurchaseStatusChanged),
+            name: .adPolicyChanged, object: nil
+        )
+
         // ✅ Notification 리스너 등록
         NotificationCenter.default.addObserver(
             self,
@@ -34,8 +39,9 @@ class AdControlManager: ObservableObject {
         let previousState = shouldShowAds
         
         // ✅ StoreKitManager의 상태를 직접 확인
-        let newState = StoreKitManager.shared.shouldShowAds
+        let newState = StoreKitManager.shared.shouldShowAds && AdRemoteConfig.shared.policy.adsEnabled
         
+        objectWillChange.send()
         shouldShowAds = newState
         
         print("🎯 광고 표시 상태: \(shouldShowAds ? "표시" : "숨김")")
@@ -51,15 +57,15 @@ class AdControlManager: ObservableObject {
     
     // ✅ 편의 프로퍼티들
     var shouldShowBannerAds: Bool {
-        shouldShowAds
+        shouldShowAds && AdRemoteConfig.shared.policy.bannerAdsEnabled
     }
     
     var shouldShowInterstitialAds: Bool {
-        shouldShowAds
+        shouldShowAds && AdRemoteConfig.shared.policy.interstitialAdsEnabled
     }
     
     var shouldShowAppOpenAds: Bool {
-        shouldShowAds
+        shouldShowAds && AdRemoteConfig.shared.policy.appOpenAdsEnabled
     }
     
     // ✅ 수동 새로고침 메서드

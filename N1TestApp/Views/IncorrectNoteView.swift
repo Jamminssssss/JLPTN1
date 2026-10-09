@@ -152,6 +152,7 @@ struct IncorrectNoteView: View {
             AdaptiveBottomBannerView()
         }
         .onAppear {
+            FirebaseTelemetry.screen("incorrect_notes")
             if storeManager.isSubscribed { UserDefaults.standard.set(true, forKey: "hasEverSubscribed") }
             reload()
         }

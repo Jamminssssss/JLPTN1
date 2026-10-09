@@ -378,6 +378,7 @@ struct GrammarPracticeView: View {
             PurchaseView()
         }
         .onAppear {
+            FirebaseTelemetry.screen("grammar")
             grammarController.loadProgress()
             setupPuzzle()
         }

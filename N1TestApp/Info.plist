@@ -20,6 +20,14 @@
 		<string>th</string>
 		<string>fr</string>
 	</array>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<true/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<true/>
 	<key>GADApplicationIdentifier</key>
 	<string>$(AD_APP_ID)</string>
 	<key>GADIsAdManagerApp</key>

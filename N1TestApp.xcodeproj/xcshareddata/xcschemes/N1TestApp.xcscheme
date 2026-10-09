@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "2600"
+   LastUpgradeVersion = "2700"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -50,6 +50,9 @@
             ReferencedContainer = "container:N1TestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument argument = "-FIRDebugEnabled" isEnabled = "YES"/>
+      </CommandLineArguments>
       <StoreKitConfigurationFileReference
          identifier = "../../N1TestApp/Store/Products.storekit">
       </StoreKitConfigurationFileReference>

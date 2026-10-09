@@ -113,6 +113,11 @@ struct ContentView: View {
                 }
             }
         }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                Task { await AdRemoteConfig.shared.refresh() }
+            }
+        }
         .onChange(of: adManager.isAdShowing) { _, isShowing in
             if isShowing {
                 cancelAdTimeout()
