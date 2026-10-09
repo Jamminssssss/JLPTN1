@@ -29,12 +29,14 @@ class DatabaseManager {
     
     // 🌟 핵심 해결책: 동시 접근 방지 및 크래시 예방을 위한 직렬 큐
     private let dbQueue = DispatchQueue(label: "com.databasemanager.dbQueue")
+    // SQLite must copy Swift's temporary UTF-8 buffers before they are released.
+    private let sqliteTransient = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
     private init() {
         openDatabase()
-        updateTableSchema()
         createTable()
         createIncorrectNotesTable()
+        updateTableSchema()
         requestCalendarAccess()
     }
     
@@ -53,7 +55,9 @@ class DatabaseManager {
     
     private func openDatabase() {
         let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("quiz_progress.sqlite")
-        sqlite3_open(fileURL.path, &db)
+        if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+            logDatabaseError(operation: "open database")
+        }
     }
     
     private func createTable() {
@@ -70,7 +74,33 @@ class DatabaseManager {
         }
     }
     
-    private func updateTableSchema() { /* 기존 로직과 동일 */ }
+    private func updateTableSchema() {
+        dbQueue.sync {
+            var stmt: OpaquePointer?
+            guard sqlite3_prepare_v2(db, "PRAGMA table_info(incorrect_notes);", -1, &stmt, nil) == SQLITE_OK else {
+                logDatabaseError(operation: "inspect incorrect_notes schema")
+                return
+            }
+            var columns = Set<String>()
+            while sqlite3_step(stmt) == SQLITE_ROW {
+                columns.insert(String(cString: sqlite3_column_text(stmt, 1)))
+            }
+            sqlite3_finalize(stmt)
+
+            // CREATE TABLE IF NOT EXISTS does not upgrade databases from older releases.
+            if !columns.contains("requiresSubscription") {
+                let query = "ALTER TABLE incorrect_notes ADD COLUMN requiresSubscription INTEGER DEFAULT 0;"
+                if sqlite3_exec(db, query, nil, nil, nil) != SQLITE_OK {
+                    logDatabaseError(operation: "migrate incorrect_notes schema")
+                }
+            }
+        }
+    }
+
+    private func logDatabaseError(operation: String) {
+        let message = db.map { String(cString: sqlite3_errmsg($0)) } ?? "Database is unavailable"
+        print("SQLite failed to \(operation): \(message)")
+    }
     
     func saveProgress(level: String, quizGroup: String, index: Int) {
         saveProgressLocalOnly(level: level, quizGroup: quizGroup, index: index)
@@ -84,16 +114,16 @@ class DatabaseManager {
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, updateQuery, -1, &stmt, nil) == SQLITE_OK {
                 sqlite3_bind_int(stmt, 1, Int32(index))
-                sqlite3_bind_text(stmt, 2, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 3, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 2, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 3, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 sqlite3_step(stmt)
             }
             sqlite3_finalize(stmt)
             if sqlite3_changes(db) == 0 {
                 let insertQuery = "INSERT INTO progress (level, quizGroup, lastQuestionIndex) VALUES (?, ?, ?);"
                 if sqlite3_prepare_v2(db, insertQuery, -1, &stmt, nil) == SQLITE_OK {
-                    sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                    sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                    sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                    sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                     sqlite3_bind_int(stmt, 3, Int32(index))
                     sqlite3_step(stmt)
                 }
@@ -114,8 +144,8 @@ class DatabaseManager {
             let q = "SELECT lastQuestionIndex FROM progress WHERE level = ? AND quizGroup = ?;"
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 if sqlite3_step(stmt) == SQLITE_ROW { lastIndex = Int(sqlite3_column_int(stmt, 0)) }
             }
             sqlite3_finalize(stmt)
@@ -128,8 +158,8 @@ class DatabaseManager {
             let q = "DELETE FROM progress WHERE level = ? AND quizGroup = ?;"
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 sqlite3_step(stmt)
             }
             sqlite3_finalize(stmt)
@@ -138,25 +168,28 @@ class DatabaseManager {
     
     func saveIncorrectAnswer(level: String, quizGroup: String, questionIndex: Int, requiresSubscription: Bool = false) {
         let timestamp = Date()
-        upsertIncorrectNoteLocalOnly(level: level, quizGroup: quizGroup, questionIndex: questionIndex, timestamp: timestamp, requiresSubscription: requiresSubscription)
+        guard upsertIncorrectNoteLocalOnly(level: level, quizGroup: quizGroup, questionIndex: questionIndex, timestamp: timestamp, requiresSubscription: requiresSubscription) else { return }
         pushIncorrectNoteToCloudKit(level: level, quizGroup: quizGroup, questionIndex: questionIndex, timestamp: timestamp, requiresSubscription: requiresSubscription)
         NotificationCenter.default.post(name: Notification.Name("incorrectNotesDidUpdate"), object: nil)
     }
     
-    func upsertIncorrectNoteLocalOnly(level: String, quizGroup: String, questionIndex: Int, timestamp: Date, requiresSubscription: Bool) {
-        dbQueue.sync {
+    @discardableResult
+    func upsertIncorrectNoteLocalOnly(level: String, quizGroup: String, questionIndex: Int, timestamp: Date, requiresSubscription: Bool) -> Bool {
+        return dbQueue.sync {
             let q = "INSERT OR REPLACE INTO incorrect_notes (level, quizGroup, questionIndex, timestamp, requiresSubscription) VALUES (?, ?, ?, ?, ?);"
             var stmt: OpaquePointer?
+            defer { sqlite3_finalize(stmt) }
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 sqlite3_bind_int(stmt, 3, Int32(questionIndex))
                 let formatter = ISO8601DateFormatter()
-                sqlite3_bind_text(stmt, 4, (formatter.string(from: timestamp) as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 4, (formatter.string(from: timestamp) as NSString).utf8String, -1, sqliteTransient)
                 sqlite3_bind_int(stmt, 5, requiresSubscription ? 1 : 0)
-                sqlite3_step(stmt)
+                if sqlite3_step(stmt) == SQLITE_DONE { return true }
             }
-            sqlite3_finalize(stmt)
+            logDatabaseError(operation: "save incorrect note")
+            return false
         }
     }
     
@@ -173,8 +206,8 @@ class DatabaseManager {
             let q = "DELETE FROM incorrect_notes WHERE level = ? AND quizGroup = ? AND questionIndex = ?;"
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 sqlite3_bind_int(stmt, 3, Int32(questionIndex))
                 sqlite3_step(stmt)
             }
@@ -190,8 +223,8 @@ class DatabaseManager {
             let q = "SELECT questionIndex FROM incorrect_notes WHERE level = ? AND quizGroup = ?;"
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
-                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
+                sqlite3_bind_text(stmt, 2, (quizGroup as NSString).utf8String, -1, sqliteTransient)
                 while sqlite3_step(stmt) == SQLITE_ROW { results.append(Int(sqlite3_column_int(stmt, 0))) }
             }
             sqlite3_finalize(stmt)
@@ -223,7 +256,7 @@ class DatabaseManager {
             let q = "SELECT rowid, quizGroup, questionIndex, timestamp, requiresSubscription FROM incorrect_notes WHERE level = ? ORDER BY timestamp DESC;"
             var stmt: OpaquePointer?
             if sqlite3_prepare_v2(db, q, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, nil)
+                sqlite3_bind_text(stmt, 1, (level as NSString).utf8String, -1, sqliteTransient)
                 let formatter = ISO8601DateFormatter()
                 while sqlite3_step(stmt) == SQLITE_ROW {
                     let id = Int(sqlite3_column_int(stmt, 0))
