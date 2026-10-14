@@ -143,10 +143,12 @@ struct ContentView: View {
                             let width = contentGeometry.size.width
                             let height = contentGeometry.size.height
 
-                            if isLandscape {
-                                landscapeLayout(width: width, height: height)
-                            } else {
-                                portraitLayout(width: width, height: height)
+                            ScrollView(.vertical) {
+                                if isLandscape {
+                                    landscapeLayout(width: width, height: height)
+                                } else {
+                                    portraitLayout(width: width, height: height)
+                                }
                             }
                         }
                     }
@@ -162,7 +164,7 @@ struct ContentView: View {
         let spacing: CGFloat = 20
 
         let buttonWidth = width - padding * 2
-        let buttonHeight = (height - padding * 2 - spacing) / 2
+        let buttonHeight = max(180, (height - padding * 2 - spacing) / 2)
 
         return VStack(spacing: spacing) {
             NavigationLink(destination: ReadingView(isTabBarHidden: $isTabBarHidden)) {
@@ -183,7 +185,7 @@ struct ContentView: View {
         let spacing: CGFloat = 20
 
         let buttonWidth = (width - padding * 2 - spacing) / 2
-        let buttonHeight = height - padding * 2
+        let buttonHeight = max(180, height - padding * 2)
 
         return HStack(spacing: spacing) {
             NavigationLink(destination: ReadingView(isTabBarHidden: $isTabBarHidden)) {
@@ -228,10 +230,12 @@ struct ContentView: View {
                 ZStack {
                     backgroundColor.ignoresSafeArea()
                     
-                    if isLandscape {
-                        practiceLandscapeLayout(width: width, height: height)
-                    } else {
-                        practicePortraitLayout(width: width, height: height)
+                    ScrollView(.vertical) {
+                        if isLandscape {
+                            practiceLandscapeLayout(width: width, height: height)
+                        } else {
+                            practicePortraitLayout(width: width, height: height)
+                        }
                     }
                 }
             }
@@ -245,7 +249,7 @@ struct ContentView: View {
         let spacing: CGFloat = 16
         
         let cardWidth = width - (padding * 2)
-        let cardHeight = (height - (padding * 2) - (spacing * 2)) / 3
+        let cardHeight = max(140, (height - (padding * 2) - (spacing * 2)) / 3)
         
         return VStack(spacing: spacing) {
             NavigationLink(destination: WordListView().toolbar(.hidden, for: .tabBar)) {
@@ -269,7 +273,7 @@ struct ContentView: View {
         let spacing: CGFloat = 16
         
         let cardWidth = (width - (padding * 2) - (spacing * 2)) / 3
-        let cardHeight = height - (padding * 2)
+        let cardHeight = max(140, height - (padding * 2))
         
         return HStack(spacing: spacing) {
             NavigationLink(destination: WordListView().toolbar(.hidden, for: .tabBar)) {
